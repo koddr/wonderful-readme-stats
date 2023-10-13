@@ -22,7 +22,11 @@ Features:
 
 Feel free to using the latest version of the `wonderful-readme-stats` from our [official Docker image][docker_image_url].
 
-See the [Complete user guide][repo_cug_url] to understand the basic principles of the project.
+```console
+docker run -it koddr/wonderful-readme-stats:latest
+```
+
+> 💡 Note: See the [Complete user guide][repo_cug_url] to understand the basic principles of the project.
 
 ### 📦 Other way to quick start
 
