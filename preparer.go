@@ -13,12 +13,6 @@ type UserAvatar struct {
 	URL string `json:"avatar_url"`
 }
 
-// FinalImageOptions is a struct that represents the options of the final image.
-type FinalImageOptions struct {
-	ImageSize, ImagesPerRow, NumRows, HorizontalMargin, VerticalMargin, TotalImages int
-	RoundedRadius                                                                   float64
-}
-
 // prepareAvatarImages prepares avatar images for the given list of UserAvatars.
 //
 // It takes a slice of UserAvatar objects as input and returns a slice of image.Image
@@ -81,21 +75,34 @@ func prepareAvatarImages(avatars []UserAvatar) ([]image.Image, error) {
 // prepareFinalImage takes a slice of image URLs as input. It returns a new
 // image.NRGBA object that represents the final image composed of all the
 // prepared images.
-func prepareFinalImage(imageUrls []image.Image, options FinalImageOptions, style string) (*image.NRGBA, error) {
-	preparedImages := make([]image.Image, 0, options.TotalImages) // create a new slice to store prepared images
-	imageChan := make(chan image.Image, options.TotalImages)      // channel to receive resized and rounded images
-	errorChan := make(chan error, options.TotalImages)            // channel to receive error messages
+func (c *Config) prepareFinalImage(imageUrls []image.Image) (*image.NRGBA, error) {
+	// Set total number of images.
+	totalImages := c.OutputImage.MaxPerRow * c.OutputImage.MaxRows
+
+	// Calculate the number of rows and images per row.
+	if imagesCount := len(imageUrls); imagesCount < totalImages {
+		c.OutputImage.MaxRows = min(
+			c.OutputImage.MaxRows,
+			int(math.Ceil(float64(imagesCount)/float64(c.OutputImage.MaxPerRow))),
+		)
+		c.OutputImage.MaxPerRow = min(c.OutputImage.MaxPerRow, imagesCount)
+		totalImages = imagesCount
+	}
+
+	preparedImages := make([]image.Image, 0, totalImages) // create a new slice to store prepared images
+	imageChan := make(chan image.Image, totalImages)      // channel to receive resized and rounded images
+	errorChan := make(chan error, totalImages)            // channel to receive error messages
 
 	// Fetch, resize and round the images concurrently.
 	for _, url := range imageUrls {
 		go func(url image.Image) {
 			// Resize the image.
-			img := makeImageResize(url, options.ImageSize, options.ImageSize)
+			img := makeImageResize(url, c.Avatar.Size, c.Avatar.Size)
 
-			switch style {
+			switch c.Avatar.Shape {
 			case "rounded":
 				// Round the image.
-				img = makeImageRounded(img, options.RoundedRadius)
+				img = makeImageRounded(img, c.Avatar.RoundedRadius)
 			case "circular":
 				// Circular the image.
 				img = makeImageCircular(img)
@@ -117,7 +124,7 @@ func prepareFinalImage(imageUrls []image.Image, options FinalImageOptions, style
 	}
 
 	// Prepare the final image using the prepared images and image parameters.
-	return prepareFinalImageInternal(preparedImages, options), nil
+	return c.prepareFinalImageInternal(preparedImages), nil
 }
 
 // prepareFinalImageInternal is a helper function that takes a slice of prepared
@@ -126,13 +133,13 @@ func prepareFinalImage(imageUrls []image.Image, options FinalImageOptions, style
 //
 // It returns a new image.NRGBA object that represents the final image composed
 // of all the prepared images.
-func prepareFinalImageInternal(preparedImages []image.Image, options FinalImageOptions) *image.NRGBA {
+func (c *Config) prepareFinalImageInternal(preparedImages []image.Image) *image.NRGBA {
 	// Calculate the total height of the final image.
-	rowHeight := options.ImageSize
-	totalHeight := options.NumRows*rowHeight + (options.NumRows-1)*options.VerticalMargin
+	rowHeight := c.Avatar.Size
+	totalHeight := c.OutputImage.MaxRows*rowHeight + (c.OutputImage.MaxRows-1)*c.Avatar.VerticalMargin
 
 	// Calculate the total width of the final image.
-	totalWidth := options.ImagesPerRow*options.ImageSize + (options.ImagesPerRow-1)*options.HorizontalMargin
+	totalWidth := c.OutputImage.MaxPerRow*c.Avatar.Size + (c.OutputImage.MaxPerRow-1)*c.Avatar.HorizontalMargin
 
 	// Create a blank final image with transparent background.
 	finalImage := image.NewNRGBA(image.Rect(0, 0, totalWidth, totalHeight))
@@ -140,44 +147,19 @@ func prepareFinalImageInternal(preparedImages []image.Image, options FinalImageO
 	// Paste the prepared images onto the final image.
 	for i, img := range preparedImages {
 		// Calculate the row and column of the image.
-		row := i / options.ImagesPerRow
-		col := i % options.ImagesPerRow
+		row := i / c.OutputImage.MaxPerRow
+		col := i % c.OutputImage.MaxPerRow
 
 		// Calculate the offset of the image.
-		offsetX := col * (options.ImageSize + options.HorizontalMargin)
-		offsetY := row * (rowHeight + options.VerticalMargin)
+		offsetX := col * (c.Avatar.Size + c.Avatar.HorizontalMargin)
+		offsetY := row * (rowHeight + c.Avatar.VerticalMargin)
 
 		// Paste the image onto the final image.
 		draw.Draw(
-			finalImage, image.Rect(offsetX, offsetY, offsetX+options.ImageSize, offsetY+rowHeight),
+			finalImage, image.Rect(offsetX, offsetY, offsetX+c.Avatar.Size, offsetY+rowHeight),
 			img, image.Point{}, draw.Src,
 		)
 	}
 
 	return finalImage
-}
-
-// prepareFinalImageOptions prepares the final image options based on the given image URLs.
-func prepareFinalImageOptions(imageUrls []image.Image) FinalImageOptions {
-	// Set image parameters.
-	options := FinalImageOptions{
-		ImageSize:        64, // size of images in pixels
-		ImagesPerRow:     16, // number of images in each row
-		NumRows:          2,  // number of rows
-		HorizontalMargin: 12, // distance between images in a row in pixels
-		VerticalMargin:   12, // distance between rows in pixels
-		RoundedRadius:    16, // radius of rounded corners in pixels
-	}
-
-	// Set total number of images.
-	options.TotalImages = options.ImagesPerRow * options.NumRows
-
-	// Calculate the number of rows and images per row.
-	if imagesCount := len(imageUrls); imagesCount < options.TotalImages {
-		options.NumRows = min(options.NumRows, int(math.Ceil(float64(imagesCount)/float64(options.ImagesPerRow))))
-		options.ImagesPerRow = min(options.ImagesPerRow, imagesCount)
-		options.TotalImages = imagesCount
-	}
-
-	return options
 }

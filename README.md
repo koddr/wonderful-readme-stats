@@ -77,7 +77,7 @@ services:
     # Set required environment variables for the backend.
     environment:
       - GITHUB_TOKEN=${GITHUB_TOKEN}
-      - REPOSITORY_USER=${REPOSITORY_USER}
+      - REPOSITORY_OWNER=${REPOSITORY_OWNER}
       - REPOSITORY_NAME=${REPOSITORY_NAME}
       - SERVER_PORT=8080
       - SERVER_READ_TIMEOUT=5
@@ -103,7 +103,7 @@ The list of the environment variables are used to configure the `wonderful-readm
 | Environment variable name      | Description                                                                         | Type     | Default value            |
 | ------------------------------ | ----------------------------------------------------------------------------------- | -------- | ------------------------ |
 | `GITHUB_TOKEN`                 | Token for the GitHub API from your [GitHub account][github_token_url] settings      | `string` | `""`                     |
-| `REPOSITORY_USER`              | Repository username on GitHub                                                       | `string` | `koddr`                  |
+| `REPOSITORY_OWNER`             | Repository owner on GitHub                                                          | `string` | `koddr`                  |
 | `REPOSITORY_NAME`              | Repository name on GitHub                                                           | `string` | `wonderful-readme-stats` |
 | `SERVER_PORT`                  | Port for the server                                                                 | `int`    | `8080`                   |
 | `SERVER_READ_TIMEOUT`          | HTTP read timeout for the server (in seconds)                                       | `int`    | `5`                      |

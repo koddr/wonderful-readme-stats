@@ -5,7 +5,6 @@ import (
 	"image"
 	"log/slog"
 	"net/http"
-	"os"
 	"time"
 
 	jsoniter "github.com/json-iterator/go"
@@ -18,10 +17,15 @@ type ImageStore struct {
 
 // fetchImages fetches the avatar images of the stargazers, forks, and contributors of the repository.
 // It returns an ImageStore and an error if any.
-func fetchImages() (ImageStore, error) {
-	// Fetch the avatar images of stargazers, forks, and contributors concurrently.
-	stargazers := fetchAvatarImages("https://api.github.com/repos/gowebly/gowebly/stargazers")
-	contributors := fetchAvatarImages("https://api.github.com/repos/gowebly/gowebly/contributors")
+func (c *Config) fetchImages() (ImageStore, error) {
+	// Create a new  URL for the GitHub API.
+	githubBaseUrl := fmt.Sprintf("https://api.github.com/repos/%s/%s", c.Repository.Owner, c.Repository.Name)
+	stargazersGithubUrl := fmt.Sprintf("%s/stargazers", githubBaseUrl)
+	contributorsGithubUrl := fmt.Sprintf("%s/contributors", githubBaseUrl)
+
+	// Fetch the avatar images of stargazers and contributors concurrently.
+	stargazers := c.fetchAvatarImages(stargazersGithubUrl)
+	contributors := c.fetchAvatarImages(contributorsGithubUrl)
 
 	// Collect the avatar images from the channels.
 	return ImageStore{
@@ -31,7 +35,7 @@ func fetchImages() (ImageStore, error) {
 }
 
 // fetchAvatarImages fetches the avatar images from the specified URL and returns a channel of image.Image.
-func fetchAvatarImages(url string) <-chan image.Image {
+func (c *Config) fetchAvatarImages(url string) <-chan image.Image {
 	// Create a new HTTP client with options.
 	// For more information, see https://blog.cloudflare.com/the-complete-guide-to-golang-net-http-timeouts/
 	client := &http.Client{
@@ -60,13 +64,22 @@ func fetchAvatarImages(url string) <-chan image.Image {
 		defer req.Body.Close()
 
 		// Set authorization header.
-		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", os.Getenv("GITHUB_TOKEN")))
+		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.GithubToken))
 
 		// Download file from the given URL.
 		resp, err := client.Do(req)
 		if err != nil {
 			// If there is an error, log the error message, close the channel, and return.
 			slog.Error("failed to fetch avatar images", "url", url, "details", err.Error())
+			close(imagesChan)
+			return
+		}
+		defer resp.Body.Close()
+
+		// Check, if the response status code is not 200.
+		if resp.StatusCode != http.StatusOK {
+			// If the status code is not 200, log the error message, close the channel, and return.
+			slog.Error("failed to fetch avatar images", "url", url, "status_code", resp.StatusCode)
 			close(imagesChan)
 			return
 		}
