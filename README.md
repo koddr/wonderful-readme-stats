@@ -94,9 +94,9 @@ services:
 
 | Environment variable name  | Description                                                                         | Type     | Default value            |
 | -------------------------- | ----------------------------------------------------------------------------------- | -------- | ------------------------ |
-| `GITHUB_TOKEN`             | Unique token for the GitHub API from your [GitHub account][github_token_url]        | `string` | `""`                     |
-| `REPOSITORY_USER`          | Unique repository username on GitHub                                                | `string` | `koddr`                  |
-| `REPOSITORY_NAME`          | Unique repository name on GitHub                                                    | `string` | `wonderful-readme-stats` |
+| `GITHUB_TOKEN`             | Token for the GitHub API from your [GitHub account][github_token_url] settings      | `string` | `""`                     |
+| `REPOSITORY_USER`          | Repository username on GitHub                                                       | `string` | `koddr`                  |
+| `REPOSITORY_NAME`          | Repository name on GitHub                                                           | `string` | `wonderful-readme-stats` |
 | `SERVER_PORT`              | Port for the server                                                                 | `int`    | `8080`                   |
 | `SERVER_READ_TIMEOUT`      | HTTP read timeout for the server (in seconds)                                       | `int`    | `5`                      |
 | `SERVER_WRITE_TIMEOUT`     | HTTP write timeout for the server (in seconds)                                      | `int`    | `10`                     |
