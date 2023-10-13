@@ -58,6 +58,8 @@ Don't forget to switch this page for your language (current is
 
 ### Step 1: Configure remote server with Portainer
 
+
+
 #### Manual configuration
 
 If you don't want to use the pre-built image provided by your cloud provider, here are instructions on how to manually install Portainer on your server.
@@ -135,7 +137,7 @@ REPOSITORY_OWNER=your-repo-owner
 REPOSITORY_NAME=your-repo-name
 ```
 
-- Then, click the **Deploy the stack** button on the bottom of the page.
+- Then, click to the **Deploy the stack** button on the bottom of the page.
 - After starting the container, the backend will be available at `http://YOUR-SERVER-IP:8080`.
 - To test the `wonderful-readme-stats` backend, open your browser and navigate to:
   - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<NAME>/stargazers.png` to see the stargazers statistics of the repository in the auto-generated PNG image.
@@ -207,20 +209,34 @@ networks:
     external: true # require external access
 ```
 
-- Then, click the **Deploy the stack** button on the bottom of the page.
+- Then, click to the **Deploy the stack** button on the bottom of the page.
 - After starting the container, **Nginx Proxy Manager** will be available at `http://YOUR-SERVER-IP:81`.
 
-> ❗️ Warning: A default email for the first login to the Nginx Proxy Manager is `admin@example.com`, and password is `changeme`. **Don't forget to change this credentials after the first login**! See official [documentation][nginx_proxy_manager_url] page for more details.
+> ❗️ Warning: A default email for the first login to the Nginx Proxy Manager is `admin@example.com`, and password is `changeme`. **Do not forget to change this credentials**! See official [documentation][nginx_proxy_manager_url] page for more details.
+
+### Step 4: Configure domain and SSL certificate
+
+After configuring [Nginx Proxy Manager][nginx_proxy_manager_url], let's configure the domain name and create the SSL certificate.
+
+- Go to your **Nginx Proxy Manager** dashboard.
+- Click to the **Add Proxy Host** button and fill the required fields:
+  - `Domain Names` with your domain name.
+  - `Scheme` with the HTTP scheme.
+  - `Forward Hostname / IP` with the IP address of your remote server.
+  - `Forward Port` with the port of the `wonderful-readme-stats` backend (by default, `8080`).
+  - Check the `Cache assets` and `Block Common Exploits` checkboxes.
+- Next, go to the **SSL** section:
+  - In `SSL Certificate` field select the `Request a new SSL certificate` option.
+  - Check the `Force SSL`, `HTTP/2 Support`, `HSTS Enabled` and `HSTS Subdomains` checkboxes.
+  - `Email Address for Let's Encrypt` with your real email address.
+  - Check the `I Agree to the Let's Encrypt Terms of Service` checkbox.
+- Then, click to the **Save** button and wait for the process to complete.
 
 ## 🎯 Motivation to create
 
 ...
 
-> 💬 From the authors: Earlier, we have already saved the world once, it was
-> [Create Go App][cgapp_url] (yep, that's our project too). The
-> [GitHub stars][cgapp_stars_url] statistics of this project can't lie:
-> more than **2.2k** developers of any level and different countries start a
-> new project through this CLI tool.
+> 💬 From the authors: Earlier, we have already saved the world twice, it was [Create Go App][cgapp_url] and [gowebly][gowebly_url] (yep, that's our projects too). The [GitHub stars][cgapp_stars_url] statistics of this project can't lie: more than **2.2k** developers of any level and different countries start a new project through these CLI tools.
 
 ## 🏆 A win-win cooperation
 
@@ -283,6 +299,7 @@ distributed under the [Creative Commons License][repo_cc_license_url] (CC BY-SA
 
 <!-- Readme links -->
 [github_token_url]: https://github.com/settings/tokens
+[gowebly_url]: https://github.com/gowebly/gowebly
 [cgapp_url]: https://github.com/create-go-app/cli
 [cgapp_stars_url]: https://github.com/create-go-app/cli/stargazers
 [docker_image_url]: https://hub.docker.com/repository/docker/koddr/wonderful-readme-stats
