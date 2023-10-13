@@ -169,7 +169,7 @@ networks:
 ```
 
 - Then, click the **Deploy the stack** button on the bottom of the page.
-- After successfully bringing up the container, **Nginx Proxy Manager** will be available at `http://YOUR-SERVER-IP:81`.
+- After starting the container, **Nginx Proxy Manager** will be available at `http://YOUR-SERVER-IP:81`.
 
 > ❗️ Warning: A default email for the first login to the Nginx Proxy Manager is `admin@example.com`, and password is `changeme`. **Don't forget to change this credentials after the first login**! See official [documentation][nginx_proxy_manager_url] page for more details.
 
