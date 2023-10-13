@@ -126,11 +126,20 @@ services:
       - OUTPUT_IMAGE_UPDATE_INTERVAL=3600
 ```
 
+- Go to **Environment variables** options and click to the **Advanced mode** button.
+- Paste your secret data as a plaintext (key-value pairs, separated by a newline) to the field:
+
+```bash
+GITHUB_TOKEN=your-secret-github-token-123456789
+REPOSITORY_OWNER=your-repo-owner
+REPOSITORY_NAME=your-repo-name
+```
+
 - Then, click the **Deploy the stack** button on the bottom of the page.
 - After starting the container, the backend will be available at `http://YOUR-SERVER-IP:8080`.
 - To test the `wonderful-readme-stats` backend, open your browser and navigate to:
-  - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<NAME>/stargazers.png` to see the stargazers statistics of the repository.
-  - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<NAME>/contributors.png` to see the contributors statistics of the repository.
+  - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<NAME>/stargazers.png` to see the stargazers statistics of the repository in auto-generated PNG image.
+  - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<NAME>/contributors.png` to see the contributors statistics of the repository in auto-generated PNG image.
 
 #### Environment variables explanation
 
