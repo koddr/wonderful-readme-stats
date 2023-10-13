@@ -58,14 +58,14 @@ Don't forget to switch this page for your language (current is
 
 ### Step 1: Prepare the Docker Compose file for Go backend
 
-You need to create the `docker-compose.yml` file with the following:
+Create the `docker-compose.yml` file with the following:
 
 ```yaml
 version: '3.8'
 
 # Define services.
 services:
-  # Service for the Go backend.
+  # Service for the backend.
   wonderful_readme_stats:
     # Configuration for the Docker image for the service.
     image: koddr/wonderful-readme-stats:latest
@@ -74,7 +74,7 @@ services:
     # Forward the exposed port 8080 on the container to port 8080 on the host machine.
     ports:
       - '8080:8080'
-    # Set required environment variables for the Go backend.
+    # Set required environment variables for the backend.
     environment:
       - GITHUB_TOKEN=${GITHUB_TOKEN}
       - REPOSITORY_USER=${REPOSITORY_USER}
@@ -82,32 +82,32 @@ services:
       - SERVER_PORT=8080
       - SERVER_READ_TIMEOUT=5
       - SERVER_WRITE_TIMEOUT=10
-      - SERVER_UPDATE_INTERVAL=3600
       - AVATAR_SHAPE=rounded
       - AVATAR_SIZE=64
       - AVATAR_HORIZONTAL_MARGIN=12
       - AVATAR_VERTICAL_MARGIN=12
       - AVATAR_ROUNDED_RADIUS=16.0
-      - OUTPUT_AVATARS_PER_ROW=16
-      - OUTPUT_MAX_ROWS=2
+      - OUTPUT_IMAGE_MAX_PER_ROW=16
+      - OUTPUT_IMAGE_MAX_ROWS=2
+      - OUTPUT_IMAGE_UPDATE_INTERVAL=3600
 ```
 
-| Environment variable name  | Description                                                                         | Type     | Default value            |
-| -------------------------- | ----------------------------------------------------------------------------------- | -------- | ------------------------ |
-| `GITHUB_TOKEN`             | Token for the GitHub API from your [GitHub account][github_token_url] settings      | `string` | `""`                     |
-| `REPOSITORY_USER`          | Repository username on GitHub                                                       | `string` | `koddr`                  |
-| `REPOSITORY_NAME`          | Repository name on GitHub                                                           | `string` | `wonderful-readme-stats` |
-| `SERVER_PORT`              | Port for the server                                                                 | `int`    | `8080`                   |
-| `SERVER_READ_TIMEOUT`      | HTTP read timeout for the server (in seconds)                                       | `int`    | `5`                      |
-| `SERVER_WRITE_TIMEOUT`     | HTTP write timeout for the server (in seconds)                                      | `int`    | `10`                     |
-| `SERVER_UPDATE_INTERVAL`   | Update interval for the output images (in seconds)                                  | `int`    | `3600`                   |
-| `AVATAR_SHAPE`             | Shape type for the one user avatar (available values: `rounded`, `circular`)        | `string` | `rounded`                |
-| `AVATAR_SIZE`              | Size for the one user avatar (in pixels)                                            | `int`    | `64`                     |
-| `AVATAR_HORIZONTAL_MARGIN` | Horizontal margin for the one user avatar (in pixels)                               | `int`    | `12`                     |
-| `AVATAR_VERTICAL_MARGIN`   | Vertical margin for the one user avatar (in pixels)                                 | `int`    | `12`                     |
-| `AVATAR_ROUNDED_RADIUS`    | Radius of corners for the one user avatar (in pixels, required for `rounded` shape) | `float`  | `16.0`                   |
-| `OUTPUT_AVATARS_PER_ROW`   | Avatars per row for the output image                                                | `int`    | `16`                     |
-| `OUTPUT_MAX_ROWS`          | Max number of rows for the output image                                             | `int`    | `2`                      |
+| Environment variable name      | Description                                                                         | Type     | Default value            |
+| ------------------------------ | ----------------------------------------------------------------------------------- | -------- | ------------------------ |
+| `GITHUB_TOKEN`                 | Token for the GitHub API from your [GitHub account][github_token_url] settings      | `string` | `""`                     |
+| `REPOSITORY_USER`              | Repository username on GitHub                                                       | `string` | `koddr`                  |
+| `REPOSITORY_NAME`              | Repository name on GitHub                                                           | `string` | `wonderful-readme-stats` |
+| `SERVER_PORT`                  | Port for the server                                                                 | `int`    | `8080`                   |
+| `SERVER_READ_TIMEOUT`          | HTTP read timeout for the server (in seconds)                                       | `int`    | `5`                      |
+| `SERVER_WRITE_TIMEOUT`         | HTTP write timeout for the server (in seconds)                                      | `int`    | `10`                     |
+| `AVATAR_SHAPE`                 | Shape type for the one user avatar (available values: `rounded`, `circular`)        | `string` | `rounded`                |
+| `AVATAR_SIZE`                  | Size for the one user avatar (in pixels)                                            | `int`    | `64`                     |
+| `AVATAR_HORIZONTAL_MARGIN`     | Horizontal margin for the one user avatar (in pixels)                               | `int`    | `12`                     |
+| `AVATAR_VERTICAL_MARGIN`       | Vertical margin for the one user avatar (in pixels)                                 | `int`    | `12`                     |
+| `AVATAR_ROUNDED_RADIUS`        | Radius of corners for the one user avatar (in pixels, required for `rounded` shape) | `float`  | `16.0`                   |
+| `OUTPUT_IMAGE_MAX_PER_ROW`     | Max number of avatars per row for the output image                                  | `int`    | `16`                     |
+| `OUTPUT_IMAGE_MAX_ROWS`        | Max number of rows with avatars for the output image                                | `int`    | `2`                      |
+| `OUTPUT_IMAGE_UPDATE_INTERVAL` | Update interval for the output images (in seconds)                                  | `int`    | `3600`                   |
 
 ### Step 2: Configure remote server with Portainer
 
