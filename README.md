@@ -1,4 +1,4 @@
-# wonderful-readme-stats – a small description
+# wonderful-readme-stats – A self-hosted solution for repository statistics
 
 [![Go version][go_version_img]][go_dev_url]
 [![Go report][go_report_img]][go_report_url]
@@ -8,7 +8,7 @@
 **English** | [Русский][repo_readme_ru_url] | [简体中文][repo_readme_cn_url] |
 [Español][repo_readme_es_url]
 
-A full description for the **wonderful-readme-stats** ...
+A wonderful out-of-the-box and self-hosted solution for displaying statistics (stargazers, contributors, etc.) about your repository in your README file.
 
 Features:
 
@@ -20,11 +20,17 @@ Features:
 
 ## ⚡️ Quick start
 
-Feel free to using `wonderful-readme-stats` CLI from our
-[official Docker image][docker_image_url] and run it in the isolated container:
+Feel free to using the latest version of the `wonderful-readme-stats`
+from our [official Docker image][docker_image_url].
+
+You need to create the `docker-compose.yml` file (see the
+[Complete user guide][repo_cug_url] below).
+
+Now, just run it by the Docker Compose command in the isolated container
+on your local machine (*for testing*) or remote server (*for production*):
 
 ```console
-docker run --rm -it koddr/wonderful-readme-stats:latest
+docker-compose up
 ```
 
 ### 📦 Other way to quick start
@@ -35,8 +41,8 @@ Linux packages from the [Releases][repo_releases_url] page.
 ## 📖 Complete user guide
 
 To get a complete guide to use and understand the basic principles of the
-`wonderful-readme-stats` CLI, we have prepared a comprehensive explanation of each
-command at once in this README file.
+`wonderful-readme-stats` project, we have prepared a comprehensive explanation
+of each step at once in this README file.
 
 > 💬 From the authors: We always treasure your time and want you to start
 > building really great web products on this awesome technology stack as
@@ -50,26 +56,21 @@ Don't forget to switch this page for your language (current is
 **English**): [Русский][repo_readme_ru_url], [简体中文][repo_readme_cn_url],
 [Español][repo_readme_es_url].
 
-### `init`
+### Step 1: Prepare the Docker Compose file
 
-Command to create a **default** config file
-([`.wonderful-readme-stats.yml`][repo_default_config]) in the current folder.
-
-```console
-wonderful-readme-stats init
-```
-
-Typically, a created config file contains the following options:
+You need to create the `docker-compose.yml` file with the following:
 
 ```yaml
-...
-```
 
-...
+```
 
 | Option name | Description |
 | ----------- | ----------- |
 | `default`   | Use the ... |
+
+### Step 2: Configure remote server with Portainer
+
+...
 
 ## 🎯 Motivation to create
 
@@ -134,6 +135,7 @@ distributed under the [Creative Commons License][repo_cc_license_url] (CC BY-SA
 [repo_readme_ru_url]: https://github.com/koddr/wonderful-readme-stats/blob/main/README_RU.md
 [repo_readme_cn_url]: https://github.com/koddr/wonderful-readme-stats/blob/main/README_CN.md
 [repo_readme_es_url]: https://github.com/koddr/wonderful-readme-stats/blob/main/README_ES.md
+[repo_cug_url]: https://github.com/koddr/wonderful-readme-stats#-complete-user-guide
 
 <!-- Author links -->
 

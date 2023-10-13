@@ -1,9 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"image"
 	"log/slog"
 	"net/http"
+	"os"
+	"time"
 
 	jsoniter "github.com/json-iterator/go"
 )
@@ -29,21 +32,44 @@ func fetchImages() (ImageStore, error) {
 
 // fetchAvatarImages fetches the avatar images from the specified URL and returns a channel of image.Image.
 func fetchAvatarImages(url string) <-chan image.Image {
+	// Create a new HTTP client with options.
+	// For more information, see https://blog.cloudflare.com/the-complete-guide-to-golang-net-http-timeouts/
+	client := &http.Client{
+		Timeout: 15 * time.Second,
+		Transport: &http.Transport{
+			TLSHandshakeTimeout:   10 * time.Second,
+			ResponseHeaderTimeout: 10 * time.Second,
+			ExpectContinueTimeout: 1 * time.Second,
+		},
+	}
+
 	// Create a channel to send the avatar images.
 	imagesChan := make(chan image.Image)
 
 	// Start a goroutine to fetch the avatar images.
 	go func() {
 		// Send an HTTP GET request to the specified URL.
-		resp, err := http.Get(url)
-		// If there is an error, log the error message, close the channel, and return.
+		req, err := http.NewRequest(http.MethodGet, url, http.NoBody)
 		if err != nil {
-			slog.Error("failed to fetch avatar images", "details", err.Error())
+			// If there is an error, log the error message, close the channel, and return.
+			slog.Error("failed request", "url", url, "details", err.Error())
 			close(imagesChan)
 			return
 		}
 		// Ensure the response body is closed when we are done.
-		defer resp.Body.Close()
+		defer req.Body.Close()
+
+		// Set authorization header.
+		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", os.Getenv("GITHUB_TOKEN")))
+
+		// Download file from the given URL.
+		resp, err := client.Do(req)
+		if err != nil {
+			// If there is an error, log the error message, close the channel, and return.
+			slog.Error("failed to fetch avatar images", "url", url, "details", err.Error())
+			close(imagesChan)
+			return
+		}
 
 		// Create a slice of UserAvatar structs to store the avatar images.
 		avatars := make([]UserAvatar, 0)

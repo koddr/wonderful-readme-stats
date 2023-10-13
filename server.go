@@ -12,19 +12,19 @@ import (
 // runServer runs a new HTTP server with the loaded environment variables.
 func runServer() error {
 	// Validate environment variables.
-	port, err := strconv.Atoi(helpGetEnv("WRS_SERVER_PORT", "8080"))
+	port, err := strconv.Atoi(helpGetEnv("SERVER_PORT", "8080"))
 	if err != nil {
 		return err
 	}
-	readTimeout, err := strconv.Atoi(helpGetEnv("WRS_SERVER_READ_TIMEOUT", "5"))
+	readTimeout, err := strconv.Atoi(helpGetEnv("SERVER_READ_TIMEOUT", "5"))
 	if err != nil {
 		return err
 	}
-	writeTimeout, err := strconv.Atoi(helpGetEnv("WRS_SERVER_WRITE_TIMEOUT", "10"))
+	writeTimeout, err := strconv.Atoi(helpGetEnv("SERVER_WRITE_TIMEOUT", "10"))
 	if err != nil {
 		return err
 	}
-	updateInterval, err := strconv.Atoi(helpGetEnv("WRS_IMAGE_UPDATE_INTERVAL", "3600"))
+	updateInterval, err := strconv.Atoi(helpGetEnv("IMAGE_UPDATE_INTERVAL", "3600"))
 	if err != nil {
 		return err
 	}
