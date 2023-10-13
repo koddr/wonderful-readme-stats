@@ -56,17 +56,58 @@ Don't forget to switch this page for your language (current is
 **English**): [Русский][repo_readme_ru_url], [简体中文][repo_readme_cn_url],
 [Español][repo_readme_es_url].
 
-### Step 1: Prepare the Docker Compose file
+### Step 1: Prepare the Docker Compose file for Go backend
 
 You need to create the `docker-compose.yml` file with the following:
 
 ```yaml
+version: '3.8'
 
+# Define services.
+services:
+  # Service for the Go backend.
+  wonderful_readme_stats:
+    # Configuration for the Docker image for the service.
+    image: koddr/wonderful-readme-stats:latest
+    # Set restart rules for the container.
+    restart: unless-stopped
+    # Forward the exposed port 8080 on the container to port 8080 on the host machine.
+    ports:
+      - '8080:8080'
+    # Set required environment variables for the Go backend.
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - REPOSITORY_USER=${REPOSITORY_USER}
+      - REPOSITORY_NAME=${REPOSITORY_NAME}
+      - SERVER_PORT=8080
+      - SERVER_READ_TIMEOUT=5
+      - SERVER_WRITE_TIMEOUT=10
+      - SERVER_UPDATE_INTERVAL=3600
+      - AVATAR_SHAPE=rounded
+      - AVATAR_SIZE=64
+      - AVATAR_HORIZONTAL_MARGIN=12
+      - AVATAR_VERTICAL_MARGIN=12
+      - AVATAR_ROUNDED_RADIUS=16.0
+      - OUTPUT_AVATARS_PER_ROW=16
+      - OUTPUT_MAX_ROWS=2
 ```
 
-| Option name | Description |
-| ----------- | ----------- |
-| `default`   | Use the ... |
+| Environment variable name  | Description                            | Type     | Default value                                               |
+| -------------------------- | -------------------------------------- | -------- | ----------------------------------------------------------- |
+| `GITHUB_TOKEN`             | Unique token for the GitHub API        | `string` | Token from your [GitHub account][github_settings_token_url] |
+| `REPOSITORY_USER`          | Unique repository username on GitHub   | `string` | `koddr`                                                     |
+| `REPOSITORY_NAME`          | Unique repository name on GitHub       | `string` | `wonderful-readme-stats`                                    |
+| `SERVER_PORT`              | Port for the server                    | `int`    | `8080`                                                      |
+| `SERVER_READ_TIMEOUT`      | HTTP read timeout for the server       | `int`    | `5`                                                         |
+| `SERVER_WRITE_TIMEOUT`     | HTTP write timeout for the server      | `int`    | `10`                                                        |
+| `SERVER_UPDATE_INTERVAL`   | Image update interval for the server   | `int`    | `3600`                                                      |
+| `AVATAR_SHAPE`             | Shape type for the one user avatar     | `string` | `rounded` (or `circular`)                                   |
+| `AVATAR_SIZE`              | Size for the one user avatar (width)   | `int`    | `64`                                                        |
+| `AVATAR_HORIZONTAL_MARGIN` | Horizontal margin for the one avatar   | `int`    | `12`                                                        |
+| `AVATAR_VERTICAL_MARGIN`   | Vertical margin for the one avatar     | `int`    | `12`                                                        |
+| `AVATAR_ROUNDED_RADIUS`    | Radius of corners for the one avatar   | `float`  | `16.0` (required for `rounded`)                             |
+| `OUTPUT_AVATARS_PER_ROW`   | Avatars per row for the final image    | `int`    | `16`                                                        |
+| `OUTPUT_MAX_ROWS`          | Max number of rows for the final image | `int`    | `2`                                                         |
 
 ### Step 2: Configure remote server with Portainer
 
@@ -142,7 +183,7 @@ distributed under the [Creative Commons License][repo_cc_license_url] (CC BY-SA
 [author_url]: https://github.com/koddr
 
 <!-- Readme links -->
-
+[github_settings_token_url]: https://github.com/settings/tokens
 [cgapp_url]: https://github.com/create-go-app/cli
 [cgapp_stars_url]: https://github.com/create-go-app/cli/stargazers
 [docker_image_url]: https://hub.docker.com/repository/docker/koddr/wonderful-readme-stats
