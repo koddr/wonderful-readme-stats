@@ -92,6 +92,10 @@ services:
       - OUTPUT_IMAGE_UPDATE_INTERVAL=3600
 ```
 
+#### Environment variables explanation
+
+The list of the environment variables are used to configure the `wonderful-readme-stats`.
+
 | Environment variable name      | Description                                                                         | Type     | Default value            |
 | ------------------------------ | ----------------------------------------------------------------------------------- | -------- | ------------------------ |
 | `GITHUB_TOKEN`                 | Token for the GitHub API from your [GitHub account][github_token_url] settings      | `string` | `""`                     |
