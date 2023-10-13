@@ -92,7 +92,7 @@ services:
       - OUTPUT_IMAGE_UPDATE_INTERVAL=3600
 ```
 
-This is where we create a container with `wonderful-readme-stats` with the settings defined from the environment variables.
+In this file, we create a container with the settings defined from the **environment variables**.
 
 > 💡 Note: This is a deliberate step, as you are supposed to deploy the project on your remote server via Docker Compose. Therefore the backend configuration is in this way.
 
