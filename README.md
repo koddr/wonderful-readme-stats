@@ -132,15 +132,15 @@ services:
   - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<NAME>/stargazers.png` to see the stargazers statistics of the repository.
   - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<NAME>/contributors.png` to see the contributors statistics of the repository.
 
+#### Environment variables explanation
+
 In this file, we create a container with the settings defined from the **environment variables**.
 
 This is a deliberate step, as you are supposed to deploy the project on your remote server via [Docker Compose][docker_compose_url]. Therefore the backend configuration is in this way.
 
 > ❗️ Warning: Do not leave the token for `GITHUB_TOKEN` exposed as a string, only as a variable! **This is not safe**. If you want to commit this `docker-compose.yml` file to your repository, make sure you don't leave any secret data in the file first.
 
-#### Environment variables explanation
-
-The list of the environment variables are used to configure the `wonderful-readme-stats`.
+The full list of the environment variables are used to configure the `wonderful-readme-stats` backend.
 
 | Environment variable name      | Description                                                                         | Type     | Default value            |
 | ------------------------------ | ----------------------------------------------------------------------------------- | -------- | ------------------------ |
