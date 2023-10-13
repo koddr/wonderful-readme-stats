@@ -20,18 +20,9 @@ Features:
 
 ## ⚡️ Quick start
 
-Feel free to using the latest version of the `wonderful-readme-stats`
-from our [official Docker image][docker_image_url].
+Feel free to using the latest version of the `wonderful-readme-stats` from our [official Docker image][docker_image_url].
 
-You need to create the `docker-compose.yml` file (see the
-[Complete user guide][repo_cug_url] below).
-
-Now, just run it by the Docker Compose command in the isolated container
-on your local machine (*for testing*) or remote server (*for production*):
-
-```console
-docker-compose up
-```
+See the [Complete user guide][repo_cug_url] to understand the basic principles of the project.
 
 ### 📦 Other way to quick start
 
