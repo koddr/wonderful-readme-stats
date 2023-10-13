@@ -133,7 +133,9 @@ The list of the environment variables are used to configure the `wonderful-readm
 
 To avoid thinking about configuring [Nginx][nginx_url] proxy and [Let's Encrypt][lets_encrypt_url] SSL certificates, let's install [Nginx Proxy Manager][nginx_proxy_manager_url] on the remote server using Portainer. He's going to do it all for us.
 
-Go to your Portainer dashboard, click to the **Add stack** button and place the following content to the **Web editor** field:
+- Go to your **Portainer** dashboard.
+- Click to the **Add stack** button.
+- Place the following content to the **Web editor** field:
 
 ```yaml
 version: '3.8'
@@ -166,7 +168,10 @@ networks:
     external: true # require external access
 ```
 
-> ❗️ Warning: A default email for the first login to the Nginx Proxy Manager is `admin@example.com`, and password is `changeme`. **Don't forget to change this credentials**! See official [documentation][nginx_proxy_manager_url] page for more details.
+- Then, click the **Deploy the stack** button on the bottom of the page.
+- After successfully bringing up the container, **Nginx Proxy Manager** will be available at `http://YOUR-SERVER-IP:81`.
+
+> ❗️ Warning: A default email for the first login to the Nginx Proxy Manager is `admin@example.com`, and password is `changeme`. **Don't forget to change this credentials after the first login**! See official [documentation][nginx_proxy_manager_url] page for more details.
 
 ## 🎯 Motivation to create
 
