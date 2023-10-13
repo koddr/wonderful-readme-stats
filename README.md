@@ -56,9 +56,43 @@ Don't forget to switch this page for your language (current is
 **English**): [Русский][repo_readme_ru_url], [简体中文][repo_readme_cn_url],
 [Español][repo_readme_es_url].
 
-### Step 1: Prepare the Docker Compose file for the backend
+### Step 1: Configure remote server with Portainer
 
-Create the `docker-compose.yml` file with the following:
+#### Manual configuration
+
+If you don't want to use the pre-built image provided by your cloud provider, here are instructions on how to manually install Portainer on your server.
+
+> ❗️ Warning: All steps must be performed strongly **after** installing Docker to your server. See [documentation][docker_install_url] page for more information.
+
+- Create a new Docker volume for Portainer data:
+
+```console
+docker volume create portainer_data
+```
+
+- Start the Portainer container:
+
+```console
+docker run -d \
+  -p 8000:8000 \
+  -p 9443:9443 \
+  --name portainer --restart=always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v portainer_data:/data \
+  portainer/portainer-ce:latest
+```
+
+- Check the status of the container:
+
+```console
+docker ps
+```
+
+### Step 2: Prepare the `wonderful-readme-stats` backend
+
+- Go to your **Portainer** dashboard.
+- Click to the **Add stack** button.
+- Place the following content to the **Web editor** field:
 
 ```yaml
 version: '3.8'
@@ -92,17 +126,17 @@ services:
       - OUTPUT_IMAGE_UPDATE_INTERVAL=3600
 ```
 
+- Then, click the **Deploy the stack** button on the bottom of the page.
+- After starting the container, the `wonderful-readme-stats` backend will be available at `http://YOUR-SERVER-IP:8080`.
+- To test the backend, open your browser and navigate to:
+  - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<REPOSITORY>/stargazers.png` to see the stargazers statistics.
+  - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<REPOSITORY>/contributors.png` to see the contributors statistics.
+
 In this file, we create a container with the settings defined from the **environment variables**.
 
 This is a deliberate step, as you are supposed to deploy the project on your remote server via [Docker Compose][docker_compose_url]. Therefore the backend configuration is in this way.
 
 > ❗️ Warning: Do not leave the token for `GITHUB_TOKEN` exposed as a string, only as a variable! **This is not safe**. If you want to commit this `docker-compose.yml` file to your repository, make sure you don't leave any secret data in the file first.
-
-You can check your configuration locally by simply running this container on your local machine with this command and browse to `http://localhost:8080`:
-
-```console
-docker-compose up
-```
 
 #### Environment variables explanation
 
@@ -124,38 +158,6 @@ The list of the environment variables are used to configure the `wonderful-readm
 | `OUTPUT_IMAGE_MAX_PER_ROW`     | Max number of avatars per row for the output image                                  | `int`    | `16`                     |
 | `OUTPUT_IMAGE_MAX_ROWS`        | Max number of rows with avatars for the output image                                | `int`    | `2`                      |
 | `OUTPUT_IMAGE_UPDATE_INTERVAL` | Update interval for the output images (in seconds)                                  | `int`    | `3600`                   |
-
-### Step 2: Configure remote server with Portainer
-
-#### Manual configuration
-
-If you don't want to use the pre-built image provided by your cloud provider, here are instructions on how to manually install Portainer on your server.
-
-> ❗️ Warning: All steps must be performed strongly **after** installing Docker to your server. See [documentation][docker_install_url] page for more information.
-
-- Create a new Docker volume for Portainer data:
-
-```console
-docker volume create portainer_data
-```
-
-- Start the Portainer container:
-
-```console
-docker run -d \
-  -p 8000:8000 \
-  -p 9443:9443 \
-  --name portainer --restart=always \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v portainer_data:/data \
-  portainer/portainer-ce:latest
-```
-
-- Check the status of the container:
-
-```console
-docker ps
-```
 
 ### Step 3: Configure Nginx Proxy Manager
 
