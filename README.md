@@ -127,10 +127,10 @@ services:
 ```
 
 - Then, click the **Deploy the stack** button on the bottom of the page.
-- After starting the container, the `wonderful-readme-stats` backend will be available at `http://YOUR-SERVER-IP:8080`.
+- After starting the container, the backend will be available at `http://YOUR-SERVER-IP:8080`.
 - To test the backend, open your browser and navigate to:
-  - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<REPOSITORY>/stargazers.png` to see the stargazers statistics.
-  - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<REPOSITORY>/contributors.png` to see the contributors statistics.
+  - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<REPOSITORY>/stargazers.png` to see the stargazers statistics of the repository.
+  - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<REPOSITORY>/contributors.png` to see the contributors statistics of the repository.
 
 In this file, we create a container with the settings defined from the **environment variables**.
 
