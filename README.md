@@ -127,7 +127,35 @@ The list of the environment variables are used to configure the `wonderful-readm
 
 ### Step 2: Configure remote server with Portainer
 
-...
+#### Manual configuration
+
+If you don't want to use the pre-built image provided by your cloud provider, here are instructions on how to manually install Portainer on your server.
+
+> ❗️ Warning: All steps must be performed strongly **after** installing Docker to your server. See [documentation][docker_install_url] page for more information.
+
+- Create a new Docker volume for Portainer data:
+
+```console
+docker volume create portainer_data
+```
+
+- Start the Portainer container:
+
+```console
+docker run -d \
+  -p 8000:8000 \
+  -p 9443:9443 \
+  --name portainer --restart=always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v portainer_data:/data \
+  portainer/portainer-ce:latest
+```
+
+- Check the status of the container:
+
+```console
+docker ps
+```
 
 ### Step 3: Configure Nginx Proxy Manager
 
@@ -248,6 +276,7 @@ distributed under the [Creative Commons License][repo_cc_license_url] (CC BY-SA
 [cgapp_stars_url]: https://github.com/create-go-app/cli/stargazers
 [docker_image_url]: https://hub.docker.com/repository/docker/koddr/wonderful-readme-stats
 [docker_compose_url]: https://docs.docker.com/compose
+[docker_install_url]: https://docs.docker.com/engine/install/#server
 [portainer_url]: https://docs.portainer.io
 [nginx_url]: https://nginx.org
 [nginx_proxy_manager_url]: https://nginxproxymanager.com/guide/
