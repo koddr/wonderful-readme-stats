@@ -216,7 +216,7 @@ networks:
 
 ### Step 4: Configure domain and SSL certificate
 
-After configuring [Nginx Proxy Manager][nginx_proxy_manager_url], let's configure the domain name and create the SSL certificate.
+After configuring Nginx Proxy Manager, let's configure the domain name and create the SSL certificate.
 
 - Go to your **Nginx Proxy Manager** dashboard.
 - Click to the **Add Proxy Host** button and fill the required fields:
@@ -232,11 +232,31 @@ After configuring [Nginx Proxy Manager][nginx_proxy_manager_url], let's configur
   - Check the `I Agree to the Let's Encrypt Terms of Service` checkbox.
 - Then, click to the **Save** button and wait for the process to complete.
 
+### Step 5: Add the statistics to your README
+
+Now, you can add the statistics of your repository to the README.
+
+For repository stargazers:
+
+```bash
+![Repository stargazers](https://your-domain.com/github/<OWNER>/<NAME>/stargazers.png)
+```
+
+For repository contributors:
+
+```bash
+![Repository contributors](https://your-domain.com/github/<OWNER>/<NAME>/contributors.png)
+```
+
+And the final image will be, for example:
+
+![Repository stargazers](https://stats.gowebly.org/github/gowebly/gowebly/stargazers.png)
+
 ## 🎯 Motivation to create
 
 ...
 
-> 💬 From the authors: Earlier, we have already saved the world twice, it was [Create Go App][cgapp_url] and [gowebly][gowebly_url] (yep, that's our projects too). The [GitHub stars][cgapp_stars_url] statistics of this project can't lie: more than **2.2k** developers of any level and different countries start a new project through these CLI tools.
+> 💬 From the authors: Earlier, we have already saved the world twice, it was [Create Go App][cgapp_url] and [gowebly][gowebly_url] (yep, that's our projects too). The GitHub stars statistics of this project can't lie: more than **2.2k** developers of any level and different countries start a new project through these CLI tools.
 
 ## 🏆 A win-win cooperation
 
@@ -301,7 +321,6 @@ distributed under the [Creative Commons License][repo_cc_license_url] (CC BY-SA
 [github_token_url]: https://github.com/settings/tokens
 [gowebly_url]: https://github.com/gowebly/gowebly
 [cgapp_url]: https://github.com/create-go-app/cli
-[cgapp_stars_url]: https://github.com/create-go-app/cli/stargazers
 [docker_image_url]: https://hub.docker.com/repository/docker/koddr/wonderful-readme-stats
 [docker_compose_url]: https://docs.docker.com/compose
 [docker_install_url]: https://docs.docker.com/engine/install/#server
