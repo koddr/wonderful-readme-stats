@@ -56,7 +56,7 @@ Don't forget to switch this page for your language (current is
 **English**): [Русский][repo_readme_ru_url], [简体中文][repo_readme_cn_url],
 [Español][repo_readme_es_url].
 
-### Step 1: Prepare the Docker Compose file for Go backend
+### Step 1: Prepare the Docker Compose file for the backend
 
 Create the `docker-compose.yml` file with the following:
 
@@ -91,6 +91,10 @@ services:
       - OUTPUT_IMAGE_MAX_ROWS=2
       - OUTPUT_IMAGE_UPDATE_INTERVAL=3600
 ```
+
+This is where we create a container with `wonderful-readme-stats` with the settings defined from the environment variables.
+
+> 💡 Note: This is a deliberate step, as you are supposed to deploy the project on your remote server via Docker Compose. Therefore the backend configuration is in this way.
 
 #### Environment variables explanation
 
