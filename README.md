@@ -68,7 +68,7 @@ services:
   # Service for the backend.
   wonderful_readme_stats:
     # Configuration for the Docker image for the service.
-    image: koddr/wonderful-readme-stats:latest
+    image: 'koddr/wonderful-readme-stats:latest'
     # Set restart rules for the container.
     restart: unless-stopped
     # Forward the exposed port 8080 on the container to port 8080 on the host machine.
@@ -131,7 +131,42 @@ The list of the environment variables are used to configure the `wonderful-readm
 
 ### Step 3: Configure Nginx Proxy Manager
 
-...
+To avoid thinking about configuring **Nginx**, let's install [Nginx Proxy Manager][nginx_proxy_manager_url] on the remote server using Portainer.
+
+It's easy! Go to your Portainer dashboard, add a new **stack** and place the following content there:
+
+```yaml
+version: '3.8'
+
+# Define the services.
+services:
+  # Service for Nginx Proxy Manager.
+  nginx_proxy_manager:
+    # Configuration for the Docker image for the service.
+    image: 'jc21/nginx-proxy-manager:latest'
+    # Set restart rules for the container.
+    restart: unless-stopped
+    # Forward the exposed ports on the container to ports on the host machine.
+    ports:
+      - '80:80'
+      - '81:81' # port for the Nginx Proxy Manager
+      - '443:443'
+    # Set volumes for the container.
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    # Set networks for the container.
+    networks:
+      - nginx_proxy_manager_default
+
+# Define networks.
+networks:
+  # Network for Nginx Proxy Manager.
+  nginx_proxy_manager_default:
+    external: true # require external access
+```
+
+> ❗️ Warning: A default email for the first login to the Nginx Proxy Manager is `admin@example.com`, and password is `changeme`. See official [documentation][nginx_proxy_manager_url] page for more details.
 
 ## 🎯 Motivation to create
 
@@ -209,3 +244,4 @@ distributed under the [Creative Commons License][repo_cc_license_url] (CC BY-SA
 [docker_image_url]: https://hub.docker.com/repository/docker/koddr/wonderful-readme-stats
 [docker_compose_url]: https://docs.docker.com/compose
 [portainer_url]: https://docs.portainer.io
+[nginx_proxy_manager_url]: https://nginxproxymanager.com/guide/
