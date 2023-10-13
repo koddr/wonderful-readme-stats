@@ -94,7 +94,15 @@ services:
 
 In this file, we create a container with the settings defined from the **environment variables**.
 
-> 💡 Note: This is a deliberate step, as you are supposed to deploy the project on your remote server via Docker Compose. Therefore the backend configuration is in this way.
+This is a deliberate step, as you are supposed to deploy the project on your remote server via [Docker Compose][docker_compose_url]. Therefore the backend configuration is in this way.
+
+> ❗️ Warning: Do not leave the token for `GITHUB_TOKEN` exposed as a string, only as a variable! **This is not safe**. If you want to commit this `docker-compose.yml` file to your repository, make sure you don't leave any secret data in the file first.
+
+You can check your configuration locally by simply running this container on your local machine with this command and browse to `http://localhost:8080`:
+
+```console
+docker-compose up
+```
 
 #### Environment variables explanation
 
@@ -118,6 +126,10 @@ The list of the environment variables are used to configure the `wonderful-readm
 | `OUTPUT_IMAGE_UPDATE_INTERVAL` | Update interval for the output images (in seconds)                                  | `int`    | `3600`                   |
 
 ### Step 2: Configure remote server with Portainer
+
+...
+
+### Step 3: Configure Nginx Proxy Manager
 
 ...
 
@@ -195,4 +207,5 @@ distributed under the [Creative Commons License][repo_cc_license_url] (CC BY-SA
 [cgapp_url]: https://github.com/create-go-app/cli
 [cgapp_stars_url]: https://github.com/create-go-app/cli/stargazers
 [docker_image_url]: https://hub.docker.com/repository/docker/koddr/wonderful-readme-stats
+[docker_compose_url]: https://docs.docker.com/compose
 [portainer_url]: https://docs.portainer.io
