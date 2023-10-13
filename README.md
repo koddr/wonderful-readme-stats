@@ -131,9 +131,9 @@ The list of the environment variables are used to configure the `wonderful-readm
 
 ### Step 3: Configure Nginx Proxy Manager
 
-To avoid thinking about configuring **Nginx**, let's install [Nginx Proxy Manager][nginx_proxy_manager_url] on the remote server using Portainer.
+To avoid thinking about configuring [Nginx][nginx_url] proxy and [Let's Encrypt][lets_encrypt_url] SSL certificates, let's install [Nginx Proxy Manager][nginx_proxy_manager_url] on the remote server using Portainer. He's going to do it all for us.
 
-It's easy! Go to your Portainer dashboard, add a new **stack** and place the following content there:
+Go to your Portainer dashboard, click to the **Add stack** button and place the following content to the **Web editor** field:
 
 ```yaml
 version: '3.8'
@@ -166,7 +166,7 @@ networks:
     external: true # require external access
 ```
 
-> ❗️ Warning: A default email for the first login to the Nginx Proxy Manager is `admin@example.com`, and password is `changeme`. See official [documentation][nginx_proxy_manager_url] page for more details.
+> ❗️ Warning: A default email for the first login to the Nginx Proxy Manager is `admin@example.com`, and password is `changeme`. **Don't forget to change this credentials**! See official [documentation][nginx_proxy_manager_url] page for more details.
 
 ## 🎯 Motivation to create
 
@@ -244,4 +244,6 @@ distributed under the [Creative Commons License][repo_cc_license_url] (CC BY-SA
 [docker_image_url]: https://hub.docker.com/repository/docker/koddr/wonderful-readme-stats
 [docker_compose_url]: https://docs.docker.com/compose
 [portainer_url]: https://docs.portainer.io
+[nginx_url]: https://nginx.org
 [nginx_proxy_manager_url]: https://nginxproxymanager.com/guide/
+[lets_encrypt_url]: https://letsencrypt.org
