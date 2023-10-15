@@ -29,7 +29,6 @@ docker run -d \
   -p 8080:8080 \
   -e REPOSITORY_OWNER=<OWNER> \
   -e REPOSITORY_NAME=<NAME> \
-  --name wonderful_readme_stats --restart=unless-stopped \
   koddr/wonderful-readme-stats:latest
 ```
 
@@ -168,7 +167,7 @@ The full list of the environment variables are used to configure the `wonderful-
 | `OUTPUT_IMAGE_MAX_ROWS`        | Max number of rows with avatars for the output image                                | `int`    | `2`                      |
 | `OUTPUT_IMAGE_UPDATE_INTERVAL` | Update interval for the output images (in seconds)                                  | `int`    | `3600`                   |
 
-> 💡 Note: You can choose not to define `GITHUB_TOKEN` in the `docker-compose.yml` file, but then the update time interval of the final image in the `OUTPUT_IMAGE_UPDATE_INTERVAL` parameter **cannot be lower** than the recommended `3600` seconds.
+> 💡 Note: You can choose not to define `GITHUB_TOKEN`, but then the update time interval of the final image in the `OUTPUT_IMAGE_UPDATE_INTERVAL` parameter **cannot be lower** than the recommended `3600` seconds.
 >
 > This is because without defining a GitHub token, the `wonderful-readme-stats` backend will work with **public limits** for getting data from the API.
 
