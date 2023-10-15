@@ -5,15 +5,13 @@
 [![Code coverage][go_code_coverage_img]][go_code_coverage_url]
 [![License][repo_license_img]][repo_license_url]
 
-**English** | [Русский][repo_readme_ru_url] | [简体中文][repo_readme_cn_url] |
-[Español][repo_readme_es_url]
+**English** | [Русский][repo_readme_ru_url] | [简体中文][repo_readme_cn_url] | [Español][repo_readme_es_url]
 
-A wonderful out-of-the-box and self-hosted solution for displaying statistics (stargazers, contributors, etc.) about your repository in your README file.
+A wonderful **out-of-the-box** and **self-hosted** solution for displaying statistics (stargazers, contributors, etc.) about your repository in your **README** file.
 
 Features:
 
-- 100% **free** and **open source** under the [Apache 2.0][repo_license_url]
-  license;
+- 100% **free** and **open source** under the [Apache 2.0][repo_license_url] license;
 - For **any** level of developer's knowledge and technical expertise;
 - **Well-documented**, with a lot of tips and assists from the authors;
 - ...
@@ -22,34 +20,39 @@ Features:
 
 Feel free to using the latest version of the `wonderful-readme-stats` from our [official Docker image][docker_image_url].
 
+> 💡 Note: See the [Complete user guide][repo_cug_url] to understand the basic principles of the project.
+
+Run the `wonderful-readme-stats` container with your environment variables:
+
 ```console
-docker run -it koddr/wonderful-readme-stats:latest
+docker run -d \
+  -p 8080:8080 \
+  -e REPOSITORY_OWNER=<OWNER> \
+  -e REPOSITORY_NAME=<NAME> \
+  --name wonderful_readme_stats --restart=unless-stopped \
+  koddr/wonderful-readme-stats:latest
 ```
 
-> 💡 Note: See the [Complete user guide][repo_cug_url] to understand the basic principles of the project.
+After starting, the `wonderful-readme-stats` backend will be available at `http://localhost:8080` on your local machine. To test the backend, open your browser and navigate to:
+
+- `http://localhost:8080/github/<OWNER>/<NAME>/stargazers.png` to see the stargazers statistics of the repository in the auto-generated PNG image.
+- `http://localhost:8080/github/<OWNER>/<NAME>/contributors.png` to see the contributors statistics of the repository in the auto-generated PNG image.
+
+That's it! 🔥 Your wonderful statistics are ready to be deployed to a remote server and added to your repository's README.
 
 ### 📦 Other way to quick start
 
-Download ready-made `exe` files for Windows, `deb`, `rpm`, `apk` or Arch
-Linux packages from the [Releases][repo_releases_url] page.
+Download ready-made `exe` files for Windows, `deb`, `rpm`, `apk` or Arch Linux packages from the [Releases][repo_releases_url] page.
 
 ## 📖 Complete user guide
 
-To get a complete guide to use and understand the basic principles of the
-`wonderful-readme-stats` project, we have prepared a comprehensive explanation
-of each step at once in this README file.
+To get a complete guide to use and understand the basic principles of the `wonderful-readme-stats` project, we have prepared a comprehensive explanation of each step at once in this README file.
 
-> 💬 From the authors: We always treasure your time and want you to start
-> building really great web products on this awesome technology stack as
-> soon as possible!
+> 💬 From the authors: We always treasure your time and want you to start building really great web products on this awesome technology stack as soon as possible!
 
-We hope you find answers to all of your questions! 👌 But, if you do not find
-needed information, feel free to create an [issue][repo_issues_url] or send a
-[PR][repo_pull_request_url] to this repository.
+We hope you find answers to all of your questions! 👌 But, if you do not find needed information, feel free to create an [issue][repo_issues_url] or send a [PR][repo_pull_request_url] to this repository.
 
-Don't forget to switch this page for your language (current is
-**English**): [Русский][repo_readme_ru_url], [简体中文][repo_readme_cn_url],
-[Español][repo_readme_es_url].
+Don't forget to switch this page for your language (current is **English**): [Русский][repo_readme_ru_url], [简体中文][repo_readme_cn_url], [Español][repo_readme_es_url].
 
 ### Step 1: Configure remote server with Portainer
 
@@ -165,6 +168,10 @@ The full list of the environment variables are used to configure the `wonderful-
 | `OUTPUT_IMAGE_MAX_ROWS`        | Max number of rows with avatars for the output image                                | `int`    | `2`                      |
 | `OUTPUT_IMAGE_UPDATE_INTERVAL` | Update interval for the output images (in seconds)                                  | `int`    | `3600`                   |
 
+> 💡 Note: You can choose not to define `GITHUB_TOKEN` in the `docker-compose.yml` file, but then the update time interval of the final image in the `OUTPUT_IMAGE_UPDATE_INTERVAL` parameter **cannot be lower** than the recommended `3600` seconds.
+>
+> This is because without defining a GitHub token, the `wonderful-readme-stats` backend will work with **public limits** for getting data from the API.
+
 ### Step 3: Configure Nginx Proxy Manager
 
 To avoid thinking about configuring [Nginx][nginx_url] proxy and [Let's Encrypt][lets_encrypt_url] SSL certificates, let's install [Nginx Proxy Manager][nginx_proxy_manager_url] on the remote server using Portainer. He's going to do it all for us.
@@ -255,21 +262,17 @@ And the final image will be, for example:
 
 ## 🏆 A win-win cooperation
 
-If you liked the `wonderful-readme-stats` project and found it useful for your tasks,
-please click a 👁️ **Watch** button to avoid missing notifications about new
-versions, and give it a 🌟 **GitHub Star**!
+If you liked the `wonderful-readme-stats` project and found it useful for your tasks, please click a 👁️ **Watch** button to avoid missing notifications about new versions, and give it a 🌟 **GitHub Star**!
 
 It really **motivates** us to make this product **even** better.
 
 ...
 
-And now, I invite you to participate in this project! Let's work **together** to
-create and popularize the **most useful** tool for developers on the web today.
+And now, I invite you to participate in this project! Let's work **together** to create and popularize the **most useful** tool for developers on the web today.
 
 - [Issues][repo_issues_url]: ask questions and submit your features.
 - [Pull requests][repo_pull_request_url]: send your improvements to the current.
-- Say a few words about the project on your social networks and blogs
-  (Dev.to, Medium, Хабр, and so on).
+- Say a few words about the project on your social networks and blogs (Dev.to, Medium, Хабр, and so on).
 
 Your PRs, issues & any words are welcome! Thank you 😘
 
@@ -279,11 +282,7 @@ Your PRs, issues & any words are welcome! Thank you 😘
 
 ## ⚠️ License
 
-[`wonderful-readme-stats`][repo_url] is free and open-source software licensed
-under the [Apache 2.0 License][repo_license_url], created and supported by
-[Vic Shóstak][author_url] with 🩵 for people and robots. Official logo
-distributed under the [Creative Commons License][repo_cc_license_url] (CC BY-SA
-4.0 International).
+[`wonderful-readme-stats`][repo_url] is free and open-source software licensed under the [Apache 2.0 License][repo_license_url], created and supported by [Vic Shóstak][author_url] with 🩵 for people and robots. Official logo distributed under the [Creative Commons License][repo_cc_license_url] (CC BY-SA 4.0 International).
 
 <!-- Go links -->
 

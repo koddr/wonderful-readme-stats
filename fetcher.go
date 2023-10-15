@@ -63,8 +63,11 @@ func (c *Config) fetchAvatarImages(url string) <-chan image.Image {
 		// Ensure the response body is closed when we are done.
 		defer req.Body.Close()
 
-		// Set authorization header.
-		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.GithubToken))
+		// Set the authorization header if a token is provided.
+		if c.GithubToken != "" {
+			// Set authorization header.
+			req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.GithubToken))
+		}
 
 		// Download file from the given URL.
 		resp, err := client.Do(req)
