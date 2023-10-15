@@ -269,7 +269,11 @@ And the final image will be, for example:
 
 ## 🎯 Motivation to create
 
-...
+I've always loved making beautiful and informative READMEs for my projects.
+
+Yes, there are so many tools out there already, but not all of them can be installed on their remote server (self-hosted) and/or have advanced settings to display the final result.
+
+That's why I created a Docker image with `wonderful-readme-stats` that I've been using since a long time. And now I put it in Open Source for the whole developer community!
 
 > 💬 From the authors: Earlier, we have already saved the world twice, it was [Create Go App][cgapp_url] and [gowebly][gowebly_url] (yep, that's our projects too). The GitHub stars statistics of this project can't lie: more than **2.2k** developers of any level and different countries start a new project through these CLI tools.
 
@@ -279,7 +283,7 @@ If you liked the `wonderful-readme-stats` project and found it useful for your t
 
 It really **motivates** us to make this product **even** better.
 
-...
+![win-win cooperation](https://github.com/koddr/wonderful-readme-stats/assets/11155743/87f0bb0b-3cf2-44a7-a7b2-4bad50117c8e)
 
 And now, I invite you to participate in this project! Let's work **together** to create and popularize the **most useful** tool for developers on the web today.
 
@@ -288,10 +292,6 @@ And now, I invite you to participate in this project! Let's work **together** to
 - Say a few words about the project on your social networks and blogs (Dev.to, Medium, Хабр, and so on).
 
 Your PRs, issues & any words are welcome! Thank you 😘
-
-### 🌟 Stargazers
-
-...
 
 ## ⚠️ License
 
