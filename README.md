@@ -59,15 +59,15 @@ We recommend using the [Portainer][portainer_url] Community Edition platform to 
 
 Let's take a look at [Timeweb.Cloud][timeweb_cloud_url] as an example:
 
-1. Login (or register) to your cloud provider account.
-2. Click to the **Server** link on the left panel.
-3. Click to the **Create** button.
-4. Switch to the **Marketplace** tab and type `portainer` in the **Search** field:
+- Login (or register) to your cloud provider account.
+- Click to the **Server** link on the left panel.
+- Click to the **Create** button.
+- Switch to the **Marketplace** tab and type `portainer` in the **Search** field:
 
-<img width="657" alt="timeweb cloud" src="https://github.com/koddr/wonderful-readme-stats/assets/11155743/645a4141-f869-4046-9836-3a1dbea083f1">
+<img width="640" alt="timeweb cloud" src="https://github.com/koddr/wonderful-readme-stats/assets/11155743/645a4141-f869-4046-9836-3a1dbea083f1">
 
-5. Fill the required fields (region, CPU, RAM, disk, and so on).
-6. Click to the **Order for ...** button and wait for the process to complete.
+- Fill the required fields (region, CPU, RAM, disk, and so on).
+- Click to the **Order for ...** button and wait for the process to complete.
 
 Now, you're ready to continue configuring the `wonderful-readme-stats` backend.
 
