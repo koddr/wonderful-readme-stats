@@ -275,7 +275,7 @@ Yes, there are so many tools out there already, but not all of them can be insta
 
 That's why I created a Docker image with `wonderful-readme-stats` that I've been using since a long time. And now I put it in Open Source for the whole developer community!
 
-> 💬 From the authors: Earlier, we have already saved the world twice, it was [Create Go App][cgapp_url] and [gowebly][gowebly_url] (yep, that's our projects too). The GitHub stars statistics of this project can't lie: more than **2.2k** developers of any level and different countries start a new project through these CLI tools.
+> 💬 From the author: Earlier, I have already saved the world twice: it was [Create Go App][cgapp_url] and [gowebly][gowebly_url] (yep, that's my projects too). The GitHub stars statistics of this project can't lie: more than **2.2k** developers of any level and different countries start a new project through these CLI tools.
 
 ## 🏆 A win-win cooperation
 
