@@ -158,9 +158,7 @@ REPOSITORY_NAME=your-repo-name
 
 #### Environment variables explanation
 
-Yes, we create a container with the settings defined from the **environment variables**.
-
-This was done on purpose to make it easier to deploy to a remote server so that you don't have to create and store a configuration file.
+Yes, we create a container with the settings defined from the **environment variables**. This was done on purpose to make it easier to deploy to a remote server so that you don't have to create and store a configuration file.
 
 > ❗️ Warning: Do not leave the token for `GITHUB_TOKEN` exposed as a string, only as a variable! **This is not safe**. If you want to commit this `docker-compose.yml` file to your repository, make sure you don't leave any secret data in the file first.
 
