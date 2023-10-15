@@ -55,11 +55,11 @@ Don't forget to switch this page for your language (current is **English**): [Р
 
 ### Step 1: Configure remote server with Portainer
 
-We recommend using the [Portainer][portainer_url] Community Edition platform to make the process of deploying the `wonderful-readme-stats` backend more comfortable and faster.
+We recommend using the [Portainer][portainer_url] Community Edition platform to make the process of deploying the `wonderful-readme-stats` backend more comfortable and faster. Almost every cloud provider has a ready-to-use Docker image that can be deployed directly from the dashboard.
 
-Almost every cloud provider has a ready-to-use Docker image that can be deployed directly from the dashboard. Let's take a look at [timeweb.Cloud][timeweb_cloud_url] as an example:
+Let's take a look at [Timeweb.Cloud][timeweb_cloud_url] as an example:
 
-1. Login or register to your account.
+1. Login (or register) to your cloud provider account.
 2. Click to the **Server** link on the left panel.
 3. Click to the **Create** button.
 4. Switch to the **Marketplace** tab and type `portainer` in the **Search** field:
