@@ -103,7 +103,7 @@ docker ps
 
 ### Step 2: Prepare the `wonderful-readme-stats` backend
 
-
+Excellent, let's now set up the `wonderful-readme-stats` backend that will collect and display statistics on the selected repository.
 
 - Go to your **Portainer** dashboard.
 - Click to the **Add stack** button.
