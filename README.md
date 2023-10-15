@@ -64,7 +64,7 @@ Let's take a look at [Timeweb.Cloud][timeweb_cloud_url] as an example:
 - Click to the **Create** button.
 - Switch to the **Marketplace** tab and type `portainer` in the **Search** field:
 
-<img width="640" alt="timeweb cloud" src="https://github.com/koddr/wonderful-readme-stats/assets/11155743/645a4141-f869-4046-9836-3a1dbea083f1">
+<img width="657" alt="timeweb cloud" src="https://github.com/koddr/wonderful-readme-stats/assets/11155743/47717814-509c-48d5-9d35-5736690b31cd">
 
 - Fill the required fields (region, CPU, RAM, disk, and so on).
 - Click to the **Order for ...** button and wait for the process to complete.
