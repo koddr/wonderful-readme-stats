@@ -271,7 +271,7 @@ And the final image will be, for example:
 
 I've always loved making beautiful and informative READMEs for my projects.
 
-Yes, there are so many tools out there already, but not all of them can be installed on their remote server (self-hosted) and/or have advanced settings to display the final result.
+Yes, there are so many tools out there already, but not all of them can be installed on the remote server (self-hosted) and/or have advanced settings to display the final result.
 
 That's why I created a Docker image with `wonderful-readme-stats` that I've been using since a long time. And now I put it in Open Source for the whole developer community!
 
