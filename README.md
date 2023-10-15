@@ -55,7 +55,21 @@ Don't forget to switch this page for your language (current is **English**): [Р
 
 ### Step 1: Configure remote server with Portainer
 
+We recommend using the [Portainer][portainer_url] Community Edition platform to make the process of deploying the `wonderful-readme-stats` backend more comfortable and faster.
 
+Almost every cloud provider has a ready-to-use Docker image that can be deployed directly from the dashboard. Let's take a look at [timeweb.Cloud][timeweb_cloud_url] as an example:
+
+1. Login or register to your account.
+2. Click to the **Server** link on the left panel.
+3. Click to the **Create** button.
+4. Switch to the **Marketplace** tab and type `portainer` in the **Search** field:
+
+<img width="657" alt="timeweb cloud" src="https://github.com/koddr/wonderful-readme-stats/assets/11155743/645a4141-f869-4046-9836-3a1dbea083f1">
+
+5. Fill the required fields (region, CPU, RAM, disk, and so on).
+6. Click to the **Order for ...** button and wait for the process to complete.
+
+Now, you're ready to continue configuring the `wonderful-readme-stats` backend.
 
 #### Manual configuration
 
@@ -88,6 +102,8 @@ docker ps
 ```
 
 ### Step 2: Prepare the `wonderful-readme-stats` backend
+
+
 
 - Go to your **Portainer** dashboard.
 - Click to the **Add stack** button.
@@ -142,9 +158,9 @@ REPOSITORY_NAME=your-repo-name
 
 #### Environment variables explanation
 
-In this file, we create a container with the settings defined from the **environment variables**.
+Yes, we create a container with the settings defined from the **environment variables**.
 
-This is a deliberate step, as you are supposed to deploy the project on your remote server via [Docker Compose][docker_compose_url]. Therefore the backend configuration is in this way.
+This was done on purpose to make it easier to deploy to a remote server so that you don't have to create and store a configuration file.
 
 > ❗️ Warning: Do not leave the token for `GITHUB_TOKEN` exposed as a string, only as a variable! **This is not safe**. If you want to commit this `docker-compose.yml` file to your repository, make sure you don't leave any secret data in the file first.
 
@@ -311,6 +327,8 @@ Your PRs, issues & any words are welcome! Thank you 😘
 [author_url]: https://github.com/koddr
 
 <!-- Readme links -->
+
+[timeweb_cloud_url]: https://timeweb.cloud/r/koddr
 [github_token_url]: https://github.com/settings/tokens
 [gowebly_url]: https://github.com/gowebly/gowebly
 [cgapp_url]: https://github.com/create-go-app/cli
