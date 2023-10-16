@@ -37,7 +37,7 @@ After starting, the `wonderful-readme-stats` backend will be available at `http:
 - `http://localhost:9876/github/<OWNER>/<NAME>/stargazers.png` to see the stargazers statistics of the repository in the auto-generated PNG image.
 - `http://localhost:9876/github/<OWNER>/<NAME>/contributors.png` to see the contributors statistics of the repository in the auto-generated PNG image.
 
-That's it! 🔥 Your wonderful statistics are ready to be deployed to a remote server and added to your repository's README.
+That's it! 🔥 A wonderful stats are ready to be deployed to a remote server and added to your repo's README.
 
 ### 📦 Other way to quick start
 
@@ -295,17 +295,19 @@ Now, you can add the statistics of your repository to the README.
 
 I've always loved making beautiful and informative READMEs for my projects.
 
-Yes, there are so many tools out there already, but not all of them can be installed on the remote server (self-hosted) and/or have advanced settings to display the final result.
+Yes, there are so many tools out there already, but not all of them can be installed on the remote server (as a self-hosted solutions) and/or have advanced settings to display the final result.
 
-That's why I created a Docker image with `wonderful-readme-stats` that I've been using since a long time. And now I put it in Open Source for the whole developer community!
+That's why I created a Docker image with `wonderful-readme-stats` that I've been using since a long time. And now, I put it to the Open Source for the whole developer community.
 
-> 💬 From the author: Earlier, I have already saved the world twice: it was [Create Go App][cgapp_url] and [gowebly][gowebly_url] (yep, that's my projects too). The GitHub stars statistics of this project can't lie: more than **2.2k** developers of any level and different countries start a new project through these CLI tools.
+Treasure your time and create only clear and handsome README pages with me! ✨
+
+> 💬 From the author: Earlier, I have already saved the world twice: it was [Create Go App][cgapp_url] and [gowebly][gowebly_url] (yep, that's my projects too). The GitHub stars statistics of these projects can't lie: more than **2.2k** developers of any level and different countries start a new project through these CLI tools.
 
 ## 🏆 A win-win cooperation
 
 If you liked the `wonderful-readme-stats` project and found it useful for your tasks, please click a 👁️ **Watch** button to avoid missing notifications about new versions, and give it a 🌟 **GitHub Star**!
 
-It really **motivates** us to make this product **even** better.
+It really **motivates** me to make this product **even** better.
 
 ![win-win cooperation](https://github.com/koddr/wonderful-readme-stats/assets/11155743/87f0bb0b-3cf2-44a7-a7b2-4bad50117c8e)
 
