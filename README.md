@@ -305,7 +305,7 @@ Now, you can add the statistics of your repository to the README.
 
 - And the final image will be like this:
 
-![Repository stargazers](https://stats.gowebly.org/github/gowebly/gowebly/stargazers.png)
+![gowebly stargazers](https://github.com/koddr/wonderful-readme-stats/assets/11155743/8ecdf4bd-c35e-4e28-a937-b0a63aa1dbaf)
 
 > 💡 Note: In this example I use stargazers statistics of the [`gowebly`][gowebly_url] repository with a default settings.
 
