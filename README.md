@@ -72,7 +72,7 @@ Let's take a look at [Timeweb.Cloud][timeweb_cloud_url] as an example:
 - Click to the **Create** button on the top right.
 - Switch to the **Marketplace** tab and type word `portainer` in the **Search** field:
 
-<img width="657" alt="timeweb cloud" src="https://github.com/koddr/wonderful-readme-stats/assets/11155743/568710e6-8460-426b-ac85-aa361f519791">
+<img width="600" alt="timeweb cloud" src="https://github.com/koddr/wonderful-readme-stats/assets/11155743/568710e6-8460-426b-ac85-aa361f519791">
 
 - Click to the **Portainer card** and select your preferred GNU/Linux distribution.
 - Fill the required fields (region, CPU, RAM, disk, backup and so on).
