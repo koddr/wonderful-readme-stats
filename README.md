@@ -41,9 +41,11 @@ After starting, the `wonderful-readme-stats` backend will be available at `http:
 
 That's it! 🔥 A wonderful stats are ready to be deployed to a remote server and added to your repo's README.
 
-### 🙌 Manual way to quick start
+### 👌 Manual way to quick start
 
-If you want to build the image yourself or change something in the code, just `git clone` this repository. I made sure that the documentation in the code is **comprehensive** and **covers** as much functionality as possible.
+If you want to build the image yourself (or change something in the code), just `git clone` this repository.
+
+I made sure that the documentation in the code is **comprehensive** and **covers** as much functionality as possible.
 
 ### 📦 Other way to quick start
 
