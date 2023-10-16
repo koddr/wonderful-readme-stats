@@ -11,10 +11,13 @@ A wonderful **out-of-the-box** and **self-hosted** solution for displaying stati
 
 Features:
 
-- 100% **free** and **open source** under the [Apache 2.0][repo_license_url] license;
+- 100% **free** and **Open Source** under the [Apache 2.0][repo_license_url] license;
 - For **any** level of developer's knowledge and technical expertise;
-- **Well-documented**, with a lot of tips and assists from the authors;
-- ...
+- Write on the pure **Go** language, without any overheads;
+- Used minimum dependencies, **well-tested** and **well-optimized** for the production;
+- Delivered as a **self-hosted** solution in the Docker image, independent of anyone else;
+- Has the **Complete user guide** to understand the basic principles and deployment processes;
+- **Well-documented**, with a lot of tips and assists from the author.
 
 ## ⚡️ Quick start
 
@@ -26,7 +29,6 @@ Run the `wonderful-readme-stats` container with your environment variables:
 
 ```console
 docker run -d \
-  -p 9876:9876 \
   -e REPOSITORY_OWNER=<OWNER> \
   -e REPOSITORY_NAME=<NAME> \
   koddr/wonderful-readme-stats:latest
@@ -38,6 +40,10 @@ After starting, the `wonderful-readme-stats` backend will be available at `http:
 - `http://localhost:9876/github/<OWNER>/<NAME>/contributors.png` to see the contributors statistics of the repository in the auto-generated PNG image.
 
 That's it! 🔥 A wonderful stats are ready to be deployed to a remote server and added to your repo's README.
+
+### 🙌 Manual way to quick start
+
+If you want to build the image yourself or change something in the code, just `git clone` this repository. I made sure that the documentation in the code is **comprehensive** and **covers** as much functionality as possible.
 
 ### 📦 Other way to quick start
 
@@ -59,14 +65,15 @@ I recommend using the [Portainer][portainer_url] Community Edition platform to m
 
 Let's take a look at [Timeweb.Cloud][timeweb_cloud_url] as an example:
 
-- Login (or register) to your cloud provider account.
+- Login (or register) to the cloud provider.
 - Click to the **Server** link on the left panel.
-- Click to the **Create** button.
-- Switch to the **Marketplace** tab and type `portainer` in the **Search** field:
+- Click to the **Create** button on the top right.
+- Switch to the **Marketplace** tab and type word `portainer` in the **Search** field:
 
 <img width="657" alt="timeweb cloud" src="https://github.com/koddr/wonderful-readme-stats/assets/11155743/47717814-509c-48d5-9d35-5736690b31cd">
 
-- Fill the required fields (region, CPU, RAM, disk, and so on).
+- Click to the **Portainer card** and select your preferred GNU/Linux distribution.
+- Fill the required fields (region, CPU, RAM, disk, backup and so on).
 - Click to the **Order for ...** button and wait for the process to complete.
 
 Now, you're ready to continue configuring the `wonderful-readme-stats` backend.
@@ -253,20 +260,22 @@ networks:
 
 ### Step 4: Configure domain and SSL certificate
 
-After configuring Nginx Proxy Manager, let's configure the domain name and create the SSL certificate.
+> 💡 Note: It is assumed that you already have a domain name purchased and its NS servers configured on your cloud provider, on which we have deployed Portainer and the rest of the tools.
+
+Let's configure the domain name and create the SSL certificate.
 
 - Go to your **Nginx Proxy Manager** dashboard.
 - Click to the **Add Proxy Host** button and fill the required fields:
-  - `Domain Names` with your domain name.
-  - `Scheme` with the HTTP scheme.
-  - `Forward Hostname / IP` with the IP address of your remote server.
-  - `Forward Port` with the port of the `wonderful-readme-stats` backend (by default, `9876`).
-  - Check the `Cache assets` and `Block Common Exploits` checkboxes.
+  - **Domain Names** with the purchased domain names (e.g., `example.com` and `www.example.com`).
+  - **Scheme** with the HTTP scheme (by default, `http`).
+  - **Forward Hostname / IP** with the IP address of your remote server.
+  - **Forward Port** with the port of the `wonderful-readme-stats` backend (by default, `9876`).
+  - Check the **Cache assets** and **Block Common Exploits** checkboxes.
 - Next, go to the **SSL** section:
-  - In `SSL Certificate` field select the `Request a new SSL certificate` option.
-  - Check the `Force SSL`, `HTTP/2 Support`, `HSTS Enabled` and `HSTS Subdomains` checkboxes.
-  - `Email Address for Let's Encrypt` with your real email address.
-  - Check the `I Agree to the Let's Encrypt Terms of Service` checkbox.
+  - In the **SSL Certificate** field select the **Request a new SSL certificate** option.
+  - Check the **Force SSL**, **HTTP/2 Support**, **HSTS Enabled** and **HSTS Subdomains** checkboxes.
+  - **Email Address for Let's Encrypt** with your real email address.
+  - Check the **I Agree to the Let's Encrypt Terms of Service** checkbox.
 - Then, click to the **Save** button and wait for the process to complete.
 
 ### Step 5: Add the statistics to your README
