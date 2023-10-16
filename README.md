@@ -174,14 +174,14 @@ The full list of the environment variables are used to configure the `wonderful-
 >
 > This is because without defining a GitHub token, the `wonderful-readme-stats` backend will work with **public limits** for getting data from the API.
 
-- Environment variables for the **repository** name and owner:
+Environment variables for the **repository** name and owner:
 
 | Environment variable name | Description                | Type     | Default value            |
 | ------------------------- | -------------------------- | -------- | ------------------------ |
 | `REPOSITORY_OWNER`        | Repository owner on GitHub | `string` | `koddr`                  |
 | `REPOSITORY_NAME`         | Repository name on GitHub  | `string` | `wonderful-readme-stats` |
 
-- Environment variables for the **server** options:
+Environment variables for the **server** options:
 
 | Environment variable name | Description                                    | Type  | Default value |
 | ------------------------- | ---------------------------------------------- | ----- | ------------- |
@@ -189,7 +189,7 @@ The full list of the environment variables are used to configure the `wonderful-
 | `SERVER_READ_TIMEOUT`     | HTTP read timeout for the server (in seconds)  | `int` | `5`           |
 | `SERVER_WRITE_TIMEOUT`    | HTTP write timeout for the server (in seconds) | `int` | `10`          |
 
-- Environment variables for the **user avatar** options (used for the each avatar image):
+Environment variables for the **user avatar** options (used for the each avatar image):
 
 | Environment variable name  | Description                                                                         | Type     | Default value |
 | -------------------------- | ----------------------------------------------------------------------------------- | -------- | ------------- |
@@ -199,7 +199,7 @@ The full list of the environment variables are used to configure the `wonderful-
 | `AVATAR_VERTICAL_MARGIN`   | Vertical margin for the one user avatar (in pixels)                                 | `int`    | `12`          |
 | `AVATAR_ROUNDED_RADIUS`    | Radius of corners for the one user avatar (in pixels, required for `rounded` shape) | `float`  | `16.0`        |
 
-- Environment variables for the **output image** options:
+Environment variables for the **output image** options:
 
 | Environment variable name      | Description                                          | Type  | Default value |
 | ------------------------------ | ---------------------------------------------------- | ----- | ------------- |
