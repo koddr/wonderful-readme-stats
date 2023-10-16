@@ -36,8 +36,8 @@ docker run -d \
 
 After starting, the `wonderful-readme-stats` backend will be available at `http://localhost:9876` on your local machine. To test the backend, open your browser and navigate to:
 
-- `http://localhost:9876/github/<OWNER>/<NAME>/stargazers.png` to see the stargazers statistics of the repository in the auto-generated PNG image.
-- `http://localhost:9876/github/<OWNER>/<NAME>/contributors.png` to see the contributors statistics of the repository in the auto-generated PNG image.
+- `/github/<OWNER>/<NAME>/stargazers.png` to see the stargazers stats of the repo (PNG image).
+- `/github/<OWNER>/<NAME>/contributors.png` to see the contributors stats of the repo (PNG image).
 
 That's it! 🔥 A wonderful stats are ready to be deployed to a remote server and added to your repo's README.
 
