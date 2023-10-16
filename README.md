@@ -5,8 +5,6 @@
 [![Code coverage][go_code_coverage_img]][go_code_coverage_url]
 [![License][repo_license_img]][repo_license_url]
 
-**English** | [Русский][repo_readme_ru_url] | [简体中文][repo_readme_cn_url] | [Español][repo_readme_es_url]
-
 A wonderful **out-of-the-box** and **self-hosted** solution for displaying statistics (stargazers, contributors, etc.) about your repository in your **README** file.
 
 Features:
@@ -61,8 +59,6 @@ To get a complete guide to use and understand the basic principles of the `wonde
 > 💬 From the author: I always treasure your time and want you to start building really great web products on this awesome technology stack as soon as possible!
 
 I hope you find answers to all of your questions! 👌 But, if you do not find needed information, feel free to create an [issue][repo_issues_url] or send a [PR][repo_pull_request_url] to this repository.
-
-> 🔠 Don't forget to switch this page to your language (current is **English**): [Русский][repo_readme_ru_url], [简体中文][repo_readme_cn_url], [Español][repo_readme_es_url].
 
 ### Step 1: Configure remote server with Portainer
 
@@ -365,9 +361,6 @@ Your PRs, issues & any words are welcome! Thank you 😘
 [repo_license_url]: https://github.com/koddr/wonderful-readme-stats/blob/main/LICENSE
 [repo_license_img]: https://img.shields.io/badge/license-Apache_2.0-red?style=for-the-badge&logo=none
 [repo_cc_license_url]: https://creativecommons.org/licenses/by-sa/4.0/
-[repo_readme_ru_url]: https://github.com/koddr/wonderful-readme-stats/blob/main/README_RU.md
-[repo_readme_cn_url]: https://github.com/koddr/wonderful-readme-stats/blob/main/README_CN.md
-[repo_readme_es_url]: https://github.com/koddr/wonderful-readme-stats/blob/main/README_ES.md
 [repo_cug_url]: https://github.com/koddr/wonderful-readme-stats#-complete-user-guide
 
 <!-- Author links -->
