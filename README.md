@@ -59,7 +59,7 @@ To get a complete guide to use and understand the basic principles of the `wonde
 
 I hope you find answers to all of your questions! 👌 But, if you do not find needed information, feel free to create an [issue][repo_issues_url] or send a [PR][repo_pull_request_url] to this repository.
 
-Don't forget to switch this page for your language (current is **English**): [Русский][repo_readme_ru_url], [简体中文][repo_readme_cn_url], [Español][repo_readme_es_url].
+> 🔠 Don't forget to switch this page for your language (current is **English**): [Русский][repo_readme_ru_url], [简体中文][repo_readme_cn_url], [Español][repo_readme_es_url].
 
 ### Step 1: Configure remote server with Portainer
 
