@@ -162,7 +162,7 @@ Yes, I create a container with the settings defined from the **environment varia
 
 The full list of the environment variables are used to configure the `wonderful-readme-stats` backend.
 
-- Environment variables for the **GitHub API**:
+Environment variables for the **GitHub API**:
 
 | Environment variable name | Description                                                                    | Type     | Default value |
 | ------------------------- | ------------------------------------------------------------------------------ | -------- | ------------- |
