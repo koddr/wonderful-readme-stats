@@ -5,7 +5,6 @@ import (
 	"image"
 	"log/slog"
 	"net/http"
-	"time"
 
 	jsoniter "github.com/json-iterator/go"
 )
@@ -36,41 +35,13 @@ func (c *Config) fetchImages() (ImageStore, error) {
 
 // fetchAvatarImages fetches the avatar images from the specified URL and returns a channel of image.Image.
 func (c *Config) fetchAvatarImages(url string) <-chan image.Image {
-	// Create a new HTTP client with options.
-	// For more information, see https://blog.cloudflare.com/the-complete-guide-to-golang-net-http-timeouts/
-	client := &http.Client{
-		Timeout: 15 * time.Second,
-		Transport: &http.Transport{
-			TLSHandshakeTimeout:   10 * time.Second,
-			ResponseHeaderTimeout: 10 * time.Second,
-			ExpectContinueTimeout: 1 * time.Second,
-		},
-	}
-
 	// Create a channel to send the avatar images.
 	imagesChan := make(chan image.Image)
 
 	// Start a goroutine to fetch the avatar images.
 	go func() {
-		// Send an HTTP GET request to the specified URL.
-		req, err := http.NewRequest(http.MethodGet, url, http.NoBody)
-		if err != nil {
-			// If there is an error, log the error message, close the channel, and return.
-			slog.Error("failed request", "url", url, "details", err.Error())
-			close(imagesChan)
-			return
-		}
-		// Ensure the response body is closed when we are done.
-		defer req.Body.Close()
-
-		// Set the authorization header if a token is provided.
-		if c.GithubToken != "" {
-			// Set authorization header.
-			req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.GithubToken))
-		}
-
 		// Download file from the given URL.
-		resp, err := client.Do(req)
+		resp, err := c.helpCustomHTTPClient(url)
 		if err != nil {
 			// If there is an error, log the error message, close the channel, and return.
 			slog.Error("failed to fetch avatar images", "url", url, "details", err.Error())
@@ -93,13 +64,13 @@ func (c *Config) fetchAvatarImages(url string) <-chan image.Image {
 		// Decode the response body into a slice of UserAvatar structs.
 		if err := jsoniter.ConfigCompatibleWithStandardLibrary.NewDecoder(resp.Body).Decode(&avatars); err != nil {
 			// If there is an error decoding the response, log the error message, close the channel, and return.
-			slog.Error("failed to fetch avatar images", "details", err.Error())
+			slog.Error("failed to unmarshal avatar images", "details", err.Error())
 			close(imagesChan)
 			return
 		}
 
 		// Prepare the avatar images.
-		images, err := prepareAvatarImages(avatars)
+		images, err := c.prepareAvatarImages(avatars)
 		if err != nil {
 			// If there is an error preparing the avatar images, log the error message, close the channel, and return.
 			slog.Error("failed to prepare avatar images", "details", err.Error())

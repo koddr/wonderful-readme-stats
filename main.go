@@ -6,7 +6,7 @@ import (
 
 func main() {
 	// Information about the application.
-	slog.Info("starting HTTP server", "port", "8080")
+	slog.Info("starting HTTP server", "port", helpGetEnv("SERVER_PORT", "9876"))
 
 	// Run the HTTP server.
 	if err := runServer(); err != nil {

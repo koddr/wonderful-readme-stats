@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"image"
 	"image/draw"
+	"log/slog"
 	"math"
 	"net/http"
 )
@@ -19,7 +20,7 @@ type UserAvatar struct {
 // objects and an error. The function uses the URLs of the avatars to download the
 // images using HTTP and decodes them into image.Image objects. It then returns the
 // downloaded images and any errors encountered during the process.
-func prepareAvatarImages(avatars []UserAvatar) ([]image.Image, error) {
+func (c *Config) prepareAvatarImages(avatars []UserAvatar) ([]image.Image, error) {
 	// Create a slice of image.Image objects to store the downloaded avatar images.
 	images := make([]image.Image, len(avatars))
 
@@ -30,19 +31,29 @@ func prepareAvatarImages(avatars []UserAvatar) ([]image.Image, error) {
 	// Iterate over the avatars.
 	for _, avatar := range avatars {
 		go func(url string) {
-			// Make an HTTP request to download the image from the given URL.
-			resp, err := http.Get(url)
+			// Download the image from the given URL using the custom HTTP client.
+			resp, err := c.helpCustomHTTPClient(url)
 			if err != nil {
 				// If there is an error, send it to the error channel and return.
+				slog.Error("failed to make HTTP response", "url", url, "details", err.Error())
 				errChan <- err
 				return
 			}
 			defer resp.Body.Close()
 
+			// Check, if the response status code is not 200.
+			if resp.StatusCode != http.StatusOK {
+				// If the status code is not 200, log the error message, close the channel, and return.
+				slog.Error("failed to fetch avatar image", "url", url, "status_code", resp.StatusCode)
+				errChan <- err
+				return
+			}
+
 			// Decode the downloaded image into an image.Image object.
 			img, _, err := image.Decode(resp.Body)
 			if err != nil {
 				// If there is an error, send it to the error channel and return.
+				slog.Error("failed to decode avatar image", "url", url, "details", err.Error())
 				errChan <- err
 				return
 			}

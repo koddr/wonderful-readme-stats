@@ -10,7 +10,7 @@ before:
     - go mod tidy
     - go run golang.org/x/vuln/cmd/govulncheck@latest -test ./...
     - go run github.com/google/osv-scanner/cmd/osv-scanner@latest -r .
-    - go run github.com/securego/gosec/v2/cmd/gosec@latest -exclude=G204 -quiet ./...
+    - go run github.com/securego/gosec/v2/cmd/gosec@latest -quiet ./...
     - go run github.com/go-critic/go-critic/cmd/gocritic@latest check -enableAll ./...
     - go run github.com/gordonklaus/ineffassign@latest ./...
     - go test -race ./...
@@ -68,7 +68,7 @@ release:
     <!-- Links -->
 
     [docker_url]: https://www.docker.com
-    [project_url]: https://github.com/koddr/wonderful-readme-stats
+    [project_url]: https://github.com/koddr/wonderful-readme-stats#-complete-user-guide
   disable: false
   skip_upload: false
 
@@ -96,7 +96,7 @@ nfpms:
   -
     maintainer: Vic Shóstak <koddr.me@gmail.com>
     description: |
-      Description of my project.
+      A wonderful out-of-the-box and self-hosted solution for displaying statistics (stargazers, contributors, etc.) about your repository in your README file.
     homepage: 'https://github.com/koddr/{{ .ProjectName }}'
     license: Apache 2.0
     formats: [ deb, rpm, apk, archlinux ]
