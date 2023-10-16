@@ -26,16 +26,16 @@ Run the `wonderful-readme-stats` container with your environment variables:
 
 ```console
 docker run -d \
-  -p 8080:8080 \
+  -p 9876:9876 \
   -e REPOSITORY_OWNER=<OWNER> \
   -e REPOSITORY_NAME=<NAME> \
   koddr/wonderful-readme-stats:latest
 ```
 
-After starting, the `wonderful-readme-stats` backend will be available at `http://localhost:8080` on your local machine. To test the backend, open your browser and navigate to:
+After starting, the `wonderful-readme-stats` backend will be available at `http://localhost:9876` on your local machine. To test the backend, open your browser and navigate to:
 
-- `http://localhost:8080/github/<OWNER>/<NAME>/stargazers.png` to see the stargazers statistics of the repository in the auto-generated PNG image.
-- `http://localhost:8080/github/<OWNER>/<NAME>/contributors.png` to see the contributors statistics of the repository in the auto-generated PNG image.
+- `http://localhost:9876/github/<OWNER>/<NAME>/stargazers.png` to see the stargazers statistics of the repository in the auto-generated PNG image.
+- `http://localhost:9876/github/<OWNER>/<NAME>/contributors.png` to see the contributors statistics of the repository in the auto-generated PNG image.
 
 That's it! 🔥 Your wonderful statistics are ready to be deployed to a remote server and added to your repository's README.
 
@@ -45,17 +45,17 @@ Download ready-made `exe` files for Windows, `deb`, `rpm`, `apk` or Arch Linux p
 
 ## 📖 Complete user guide
 
-To get a complete guide to use and understand the basic principles of the `wonderful-readme-stats` project, we have prepared a comprehensive explanation of each step at once in this README file.
+To get a complete guide to use and understand the basic principles of the `wonderful-readme-stats` project, I have prepared a comprehensive explanation of each step at once in this README file.
 
-> 💬 From the authors: We always treasure your time and want you to start building really great web products on this awesome technology stack as soon as possible!
+> 💬 From the authors: I always treasure your time and want you to start building really great web products on this awesome technology stack as soon as possible!
 
-We hope you find answers to all of your questions! 👌 But, if you do not find needed information, feel free to create an [issue][repo_issues_url] or send a [PR][repo_pull_request_url] to this repository.
+I hope you find answers to all of your questions! 👌 But, if you do not find needed information, feel free to create an [issue][repo_issues_url] or send a [PR][repo_pull_request_url] to this repository.
 
 Don't forget to switch this page for your language (current is **English**): [Русский][repo_readme_ru_url], [简体中文][repo_readme_cn_url], [Español][repo_readme_es_url].
 
 ### Step 1: Configure remote server with Portainer
 
-We recommend using the [Portainer][portainer_url] Community Edition platform to make the process of deploying the `wonderful-readme-stats` backend more comfortable and faster. Almost every cloud provider has a ready-to-use Docker image that can be deployed directly from the dashboard.
+I recommend using the [Portainer][portainer_url] Community Edition platform to make the process of deploying the `wonderful-readme-stats` backend more comfortable and faster. Almost every cloud provider has a ready-to-use Docker image that can be deployed directly from the dashboard.
 
 Let's take a look at [Timeweb.Cloud][timeweb_cloud_url] as an example:
 
@@ -120,15 +120,15 @@ services:
     image: 'koddr/wonderful-readme-stats:latest'
     # Set restart rules for the container.
     restart: unless-stopped
-    # Forward the exposed port 8080 on the container to port 8080 on the host machine.
+    # Forward the exposed port 9876 on the container to port 9876 on the host machine.
     ports:
-      - '8080:8080'
+      - '9876:9876'
     # Set required environment variables for the backend.
     environment:
       - GITHUB_TOKEN=${GITHUB_TOKEN}
       - REPOSITORY_OWNER=${REPOSITORY_OWNER}
       - REPOSITORY_NAME=${REPOSITORY_NAME}
-      - SERVER_PORT=8080
+      - SERVER_PORT=9876
       - SERVER_READ_TIMEOUT=5
       - SERVER_WRITE_TIMEOUT=10
       - AVATAR_SHAPE=rounded
@@ -151,39 +151,61 @@ REPOSITORY_NAME=your-repo-name
 ```
 
 - Then, click to the **Deploy the stack** button on the bottom of the page.
-- After starting the container, the backend will be available at `http://YOUR-SERVER-IP:8080`.
+- After starting the container, the backend will be available at `http://YOUR-SERVER-IP:9876`.
 - To test the `wonderful-readme-stats` backend, open your browser and navigate to:
-  - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<NAME>/stargazers.png` to see the stargazers statistics of the repository in the auto-generated PNG image.
-  - `http://YOUR-SERVER-IP:8080/github/<OWNER>/<NAME>/contributors.png` to see the contributors statistics of the repository in the auto-generated PNG image.
+  - `http://YOUR-SERVER-IP:9876/github/<OWNER>/<NAME>/stargazers.png` to see the stargazers statistics of the repository in the auto-generated PNG image.
+  - `http://YOUR-SERVER-IP:9876/github/<OWNER>/<NAME>/contributors.png` to see the contributors statistics of the repository in the auto-generated PNG image.
 
 #### Environment variables explanation
 
-Yes, we create a container with the settings defined from the **environment variables**. This was done on purpose to make it easier to deploy to a remote server so that you don't have to create and store a configuration file.
-
-> ❗️ Warning: Do not leave the token for `GITHUB_TOKEN` exposed as a string, only as a variable! **This is not safe**. If you want to commit this to your repository, make sure you don't leave any secret data in the file first.
+Yes, I create a container with the settings defined from the **environment variables**. This was done on purpose to make it easier to deploy to a remote server so that you don't have to create and store a configuration file.
 
 The full list of the environment variables are used to configure the `wonderful-readme-stats` backend.
 
-| Environment variable name      | Description                                                                         | Type     | Default value            |
-| ------------------------------ | ----------------------------------------------------------------------------------- | -------- | ------------------------ |
-| `GITHUB_TOKEN`                 | Token for the GitHub API from your [GitHub account][github_token_url] settings      | `string` | `""`                     |
-| `REPOSITORY_OWNER`             | Repository owner on GitHub                                                          | `string` | `koddr`                  |
-| `REPOSITORY_NAME`              | Repository name on GitHub                                                           | `string` | `wonderful-readme-stats` |
-| `SERVER_PORT`                  | Port for the server                                                                 | `int`    | `8080`                   |
-| `SERVER_READ_TIMEOUT`          | HTTP read timeout for the server (in seconds)                                       | `int`    | `5`                      |
-| `SERVER_WRITE_TIMEOUT`         | HTTP write timeout for the server (in seconds)                                      | `int`    | `10`                     |
-| `AVATAR_SHAPE`                 | Shape type for the one user avatar (available values: `rounded`, `circular`)        | `string` | `rounded`                |
-| `AVATAR_SIZE`                  | Size for the one user avatar (in pixels)                                            | `int`    | `64`                     |
-| `AVATAR_HORIZONTAL_MARGIN`     | Horizontal margin for the one user avatar (in pixels)                               | `int`    | `12`                     |
-| `AVATAR_VERTICAL_MARGIN`       | Vertical margin for the one user avatar (in pixels)                                 | `int`    | `12`                     |
-| `AVATAR_ROUNDED_RADIUS`        | Radius of corners for the one user avatar (in pixels, required for `rounded` shape) | `float`  | `16.0`                   |
-| `OUTPUT_IMAGE_MAX_PER_ROW`     | Max number of avatars per row for the output image                                  | `int`    | `16`                     |
-| `OUTPUT_IMAGE_MAX_ROWS`        | Max number of rows with avatars for the output image                                | `int`    | `2`                      |
-| `OUTPUT_IMAGE_UPDATE_INTERVAL` | Update interval for the output images (in seconds)                                  | `int`    | `3600`                   |
+- Environment variables for the **GitHub API**:
 
-> 💡 Note: You can choose not to define `GITHUB_TOKEN`, but then the update time interval of the final image in the `OUTPUT_IMAGE_UPDATE_INTERVAL` parameter **cannot be lower** than the recommended `3600` seconds.
+| Environment variable name | Description                                                                    | Type     | Default value |
+| ------------------------- | ------------------------------------------------------------------------------ | -------- | ------------- |
+| `GITHUB_TOKEN`            | Token for the GitHub API from your [GitHub account][github_token_url] settings | `string` | `""`          |
+
+> ❗️ Warning: Do not leave the token for `GITHUB_TOKEN` exposed as a string, only as a variable! **This is not safe**. If you want to commit this to your repository, make sure you don't leave any secret data in the file first.
+
+> 💡 Note: You can choose not to define `GITHUB_TOKEN`, but then the update time interval of the output image in the `OUTPUT_IMAGE_UPDATE_INTERVAL` parameter **cannot be lower** than the recommended `3600` seconds.
 >
 > This is because without defining a GitHub token, the `wonderful-readme-stats` backend will work with **public limits** for getting data from the API.
+
+- Environment variables for the **repository** name and owner:
+
+| Environment variable name | Description                | Type     | Default value            |
+| ------------------------- | -------------------------- | -------- | ------------------------ |
+| `REPOSITORY_OWNER`        | Repository owner on GitHub | `string` | `koddr`                  |
+| `REPOSITORY_NAME`         | Repository name on GitHub  | `string` | `wonderful-readme-stats` |
+
+- Environment variables for the **server** options:
+
+| Environment variable name | Description                                    | Type  | Default value |
+| ------------------------- | ---------------------------------------------- | ----- | ------------- |
+| `SERVER_PORT`             | Port for the server                            | `int` | `9876`        |
+| `SERVER_READ_TIMEOUT`     | HTTP read timeout for the server (in seconds)  | `int` | `5`           |
+| `SERVER_WRITE_TIMEOUT`    | HTTP write timeout for the server (in seconds) | `int` | `10`          |
+
+- Environment variables for the **user avatar** options (used for the each avatar image):
+
+| Environment variable name  | Description                                                                         | Type     | Default value |
+| -------------------------- | ----------------------------------------------------------------------------------- | -------- | ------------- |
+| `AVATAR_SHAPE`             | Shape type for the one user avatar (available values: `rounded`, `circular`)        | `string` | `rounded`     |
+| `AVATAR_SIZE`              | Size for the one user avatar (in pixels)                                            | `int`    | `64`          |
+| `AVATAR_HORIZONTAL_MARGIN` | Horizontal margin for the one user avatar (in pixels)                               | `int`    | `12`          |
+| `AVATAR_VERTICAL_MARGIN`   | Vertical margin for the one user avatar (in pixels)                                 | `int`    | `12`          |
+| `AVATAR_ROUNDED_RADIUS`    | Radius of corners for the one user avatar (in pixels, required for `rounded` shape) | `float`  | `16.0`        |
+
+- Environment variables for the **output image** options:
+
+| Environment variable name      | Description                                          | Type  | Default value |
+| ------------------------------ | ---------------------------------------------------- | ----- | ------------- |
+| `OUTPUT_IMAGE_MAX_PER_ROW`     | Max number of avatars per row for the output image   | `int` | `16`          |
+| `OUTPUT_IMAGE_MAX_ROWS`        | Max number of rows with avatars for the output image | `int` | `2`           |
+| `OUTPUT_IMAGE_UPDATE_INTERVAL` | Update interval for the output images (in seconds)   | `int` | `3600`        |
 
 ### Step 3: Configure Nginx Proxy Manager
 
@@ -238,7 +260,7 @@ After configuring Nginx Proxy Manager, let's configure the domain name and creat
   - `Domain Names` with your domain name.
   - `Scheme` with the HTTP scheme.
   - `Forward Hostname / IP` with the IP address of your remote server.
-  - `Forward Port` with the port of the `wonderful-readme-stats` backend (by default, `8080`).
+  - `Forward Port` with the port of the `wonderful-readme-stats` backend (by default, `9876`).
   - Check the `Cache assets` and `Block Common Exploits` checkboxes.
 - Next, go to the **SSL** section:
   - In `SSL Certificate` field select the `Request a new SSL certificate` option.
@@ -251,21 +273,23 @@ After configuring Nginx Proxy Manager, let's configure the domain name and creat
 
 Now, you can add the statistics of your repository to the README.
 
-For repository stargazers:
+- For the repository **Stargazers** (*users that have starred the repository*):
 
 ```bash
 ![Repository stargazers](https://your-domain.com/github/<OWNER>/<NAME>/stargazers.png)
 ```
 
-For repository contributors:
+- For the repository **Contributors** (*users that have contributed to the repository*):
 
 ```bash
 ![Repository contributors](https://your-domain.com/github/<OWNER>/<NAME>/contributors.png)
 ```
 
-And the final image will be, for example:
+- And the final image will be like this:
 
 ![Repository stargazers](https://stats.gowebly.org/github/gowebly/gowebly/stargazers.png)
+
+> 💡 Note: In this example I use stargazers statistics of the [`gowebly`][gowebly_url] repository with a default settings.
 
 ## 🎯 Motivation to create
 

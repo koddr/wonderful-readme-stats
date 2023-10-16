@@ -59,7 +59,7 @@ func validateEnvVariables() (*Config, error) {
 	var err error
 
 	// Parse the SERVER_PORT environment variable and assign it to c.Server.Port.
-	c.Server.Port, err = strconv.Atoi(helpGetEnv("SERVER_PORT", "8080"))
+	c.Server.Port, err = strconv.Atoi(helpGetEnv("SERVER_PORT", "9876"))
 	if err != nil {
 		return nil, err
 	}
