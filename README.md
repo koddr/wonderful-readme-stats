@@ -221,6 +221,7 @@ Environment variables for the **output image** options:
 To avoid thinking about configuring [Nginx][nginx_url] proxy and [Let's Encrypt][lets_encrypt_url] SSL certificates, let's install [Nginx Proxy Manager][nginx_proxy_manager_url] on the remote server using Portainer. He's going to do it all for us.
 
 - Go to your **Portainer** dashboard.
+- Add a new Docker network called `nginx_proxy_manager_default` in the **Networks** section.
 - Click to the **Add stack** button.
 - Place the following content to the **Web editor** field:
 
