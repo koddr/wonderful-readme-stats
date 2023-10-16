@@ -32,6 +32,8 @@ docker run -d \
   -p 9876:9876 \
   -e REPOSITORY_OWNER=<OWNER> \
   -e REPOSITORY_NAME=<NAME> \
+  -v /etc/ssl/certs:/etc/ssl/certs:ro \
+  --name wonderful_readme_stats --restart=unless-stopped \
   koddr/wonderful-readme-stats:latest
 ```
 
@@ -149,6 +151,9 @@ services:
       - OUTPUT_IMAGE_MAX_PER_ROW=16
       - OUTPUT_IMAGE_MAX_ROWS=2
       - OUTPUT_IMAGE_UPDATE_INTERVAL=3600
+    # Set volumes for the container with SSL certificates.
+    volumes:
+      - /etc/ssl/certs:/etc/ssl/certs:ro
 ```
 
 - Go to **Environment variables** options and click to the **Advanced mode** button.
