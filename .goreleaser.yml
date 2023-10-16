@@ -71,10 +71,10 @@ dockers:
     id: '{{ .ProjectName }}'
     ids: [ default ]
     image_templates:
-      - 'gowebly/{{ .ProjectName }}:latest'
-      - 'gowebly/{{ .ProjectName }}:{{ .Tag }}'
-      - 'gowebly/{{ .ProjectName }}:v{{ .Major }}'
-      - 'gowebly/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}'
+      - 'koddr/{{ .ProjectName }}:latest'
+      - 'koddr/{{ .ProjectName }}:{{ .Tag }}'
+      - 'koddr/{{ .ProjectName }}:v{{ .Major }}'
+      - 'koddr/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}'
     build_flag_templates:
       - '--pull'
       - '--label=org.opencontainers.image.created={{ .Date }}'
