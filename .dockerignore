@@ -1,0 +1,19 @@
+# Ignore folders.
+.git/
+.github/
+.vscode/
+.idea/
+node_modules/
+bin/
+tmp/
+tests/
+dist/
+
+# Ignore files.
+**/.DS_Store
+.dockerignore
+.gitignore
+Dockerfile
+**/*_test.go
+*.md
+*.out
