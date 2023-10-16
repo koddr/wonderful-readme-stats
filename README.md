@@ -29,6 +29,7 @@ Run the `wonderful-readme-stats` container with your environment variables:
 
 ```console
 docker run -d \
+  -p 9876:9876 \
   -e REPOSITORY_OWNER=<OWNER> \
   -e REPOSITORY_NAME=<NAME> \
   koddr/wonderful-readme-stats:latest
