@@ -30,6 +30,7 @@ docker run -d \
   -p 9876:9876 \
   -e REPOSITORY_OWNER=<OWNER> \
   -e REPOSITORY_NAME=<NAME> \
+  -e SERVER_PORT=9876 \
   -v /etc/ssl/certs:/etc/ssl/certs:ro \
   --name wonderful_readme_stats --restart=unless-stopped \
   koddr/wonderful-readme-stats:latest
@@ -133,20 +134,20 @@ services:
       - '9876:9876'
     # Set required environment variables for the backend.
     environment:
-      - GITHUB_TOKEN=${GITHUB_TOKEN}
-      - REPOSITORY_OWNER=${REPOSITORY_OWNER}
-      - REPOSITORY_NAME=${REPOSITORY_NAME}
-      - SERVER_PORT=9876
-      - SERVER_READ_TIMEOUT=5
-      - SERVER_WRITE_TIMEOUT=10
-      - AVATAR_SHAPE=rounded
-      - AVATAR_SIZE=64
-      - AVATAR_HORIZONTAL_MARGIN=12
-      - AVATAR_VERTICAL_MARGIN=12
-      - AVATAR_ROUNDED_RADIUS=16.0
-      - OUTPUT_IMAGE_MAX_PER_ROW=16
-      - OUTPUT_IMAGE_MAX_ROWS=2
-      - OUTPUT_IMAGE_UPDATE_INTERVAL=3600
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+      REPOSITORY_OWNER: ${REPOSITORY_OWNER}
+      REPOSITORY_NAME: ${REPOSITORY_NAME}
+      SERVER_PORT: 9876
+      SERVER_READ_TIMEOUT: 5
+      SERVER_WRITE_TIMEOUT: 10
+      AVATAR_SHAPE: rounded
+      AVATAR_SIZE: 64
+      AVATAR_HORIZONTAL_MARGIN: 12
+      AVATAR_VERTICAL_MARGIN: 12
+      AVATAR_ROUNDED_RADIUS: 16.0
+      OUTPUT_IMAGE_MAX_PER_ROW: 16
+      OUTPUT_IMAGE_MAX_ROWS: 2
+      OUTPUT_IMAGE_UPDATE_INTERVAL: 3600
     # Set volumes for the container with SSL certificates.
     volumes:
       - /etc/ssl/certs:/etc/ssl/certs:ro
