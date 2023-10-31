@@ -21,9 +21,10 @@ Features:
 
 Feel free to using the latest version of the `wonderful-readme-stats` from our [official Docker image][docker_image_url].
 
-> 💡 Note: See the [Complete user guide][repo_cug_url] to understand the basic principles of the project.
+> [!NOTE]
+> See the [Complete user guide][repo_cug_url] to understand the basic principles of the project.
 
-Run the `wonderful-readme-stats` container with your environment variables:
+Run the `wonderful-readme-stats` container on the local GNU/Linux (amd64 or arm64) machine with your environment variables:
 
 ```console
 docker run -d \
@@ -35,6 +36,9 @@ docker run -d \
   --name wonderful_readme_stats --restart=unless-stopped \
   koddr/wonderful-readme-stats:latest
 ```
+
+> [!WARNING]
+> Please note that the Docker container of the `wonderful-readme-stats` project **does not support** running on Apple macOS and Microsoft Windows systems. Because the project aims to work on the remote servers with GNU/Linux (`amd64` or `arm64`) only.
 
 After starting, the `wonderful-readme-stats` backend will be available at `http://localhost:9876` on your local machine. To test the backend, open your browser and navigate to:
 
@@ -51,13 +55,14 @@ I made sure that the documentation in the code is **comprehensive** and **covers
 
 ### 📦 Other way to quick start
 
-Download ready-made `exe` files for Windows, `deb`, `rpm`, `apk` or Arch Linux packages from the [Releases][repo_releases_url] page.
+Download ready-made `exe` files for Windows, macOS (darwin) and GNU/Linux binaries, `deb`, `rpm`, `apk` or Arch Linux packages from the [Releases][repo_releases_url] page.
 
 ## 📖 Complete user guide
 
 To get a complete guide to use and understand the basic principles of the `wonderful-readme-stats` project, I have prepared a comprehensive explanation of each step at once in this README file.
 
-> 💬 From the author: I always treasure your time and want you to start building really great web products on this awesome technology stack as soon as possible!
+> [!NOTE]
+> I always treasure your time and want you to start building really great README statistics as soon as possible!
 
 I hope you find answers to all of your questions! 👌 But, if you do not find needed information, feel free to create an [issue][repo_issues_url] or send a [PR][repo_pull_request_url] to this repository.
 
@@ -84,7 +89,8 @@ Now, you're ready to continue configuring the `wonderful-readme-stats` backend.
 
 If you don't want to use the pre-built image provided by your cloud provider, here are instructions on how to manually install Portainer on your server.
 
-> ❗️ Warning: All steps must be performed strongly **after** installing Docker to your server. See [documentation][docker_install_url] page for more information.
+> [!WARNING]
+> All steps must be performed strongly **after** installing Docker to your server. See [documentation][docker_install_url] page for more information.
 
 - Create a new Docker volume for Portainer data:
 
@@ -180,9 +186,11 @@ Environment variables for the **GitHub API**:
 | ------------------------- | ------------------------------------------------------------------------------ | -------- | ------------- |
 | `GITHUB_TOKEN`            | Token for the GitHub API from your [GitHub account][github_token_url] settings | `string` | `""`          |
 
-> ❗️ Warning: Do not leave the token for `GITHUB_TOKEN` exposed as a string, only as a variable! **This is not safe**. If you want to commit this to your repository, make sure you don't leave any secret data in the file first.
+> [!WARNING]
+> Do not leave the token for `GITHUB_TOKEN` exposed as a string, only as a variable! **This is not safe**. If you want to commit this to your repository, make sure you don't leave any secret data in the file first.
 
-> 💡 Note: You can choose not to define `GITHUB_TOKEN`, but then the update time interval of the output image in the `OUTPUT_IMAGE_UPDATE_INTERVAL` parameter **cannot be lower** than the recommended `3600` seconds.
+> [!NOTE]
+> You can choose not to define `GITHUB_TOKEN`, but then the update time interval of the output image in the `OUTPUT_IMAGE_UPDATE_INTERVAL` parameter **cannot be lower** than the recommended `3600` seconds.
 >
 > This is because without defining a GitHub token, the `wonderful-readme-stats` backend will work with **public limits** for getting data from the API.
 
@@ -268,11 +276,13 @@ networks:
 - Then, click to the **Deploy the stack** button on the bottom of the page.
 - After starting the container, **Nginx Proxy Manager** will be available at `http://YOUR-SERVER-IP:81`.
 
-> ❗️ Warning: A default email for the first login to the Nginx Proxy Manager is `admin@example.com`, and password is `changeme`. **Do not forget to change this credentials**! See official [documentation][nginx_proxy_manager_url] page for more details.
+> [!WARNING]
+> A default email for the first login to the Nginx Proxy Manager is `admin@example.com`, and password is `changeme`. **Do not forget to change this credentials**! See official [documentation][nginx_proxy_manager_url] page for more details.
 
 ### Step 4: Configure domain and SSL certificate
 
-> 💡 Note: It is assumed that you already have a domain name purchased and its NS servers configured on your cloud provider, on which we have deployed Portainer and the rest of the tools.
+> [!NOTE]
+> It is assumed that you already have a domain name purchased and its NS servers configured on your cloud provider, on which we have deployed Portainer and the rest of the tools.
 
 Let's configure the domain name and create the SSL certificate.
 
@@ -322,7 +332,8 @@ That's why I created a Docker image with `wonderful-readme-stats` that I've been
 
 Treasure your time and create only clear and handsome README pages with me! ✨
 
-> 💬 From the author: Earlier, I have already saved the world twice: it was [Create Go App][cgapp_url] and [gowebly][gowebly_url] (yep, that's my projects too). The GitHub stars statistics of these projects can't lie: more than **2.2k** developers of any level and different countries start a new project through these CLI tools.
+> [!NOTE]
+> Earlier, I have already saved the world twice: it was [Create Go App][cgapp_url] and [gowebly][gowebly_url] (yep, that's my projects too). The GitHub stars statistics of these projects can't lie: more than **2.3k** developers of any level and different countries start a new project through these CLI tools.
 
 ## 🏆 A win-win cooperation
 
