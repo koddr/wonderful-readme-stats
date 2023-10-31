@@ -104,12 +104,16 @@ dockers:
 
 docker_manifests:
   -
-    name_template: 'koddr/{{ .ProjectName }}:{{ .Tag }}'
+    name_template: 'koddr/{{ .ProjectName }}:latest'
     skip_push: auto
     image_templates:
       - 'koddr/{{ .ProjectName }}:latest-amd64'
-      - 'koddr/{{ .ProjectName }}:{{ .Tag }}-amd64'
       - 'koddr/{{ .ProjectName }}:latest-arm64'
+  -
+    name_template: 'koddr/{{ .ProjectName }}:{{ .Tag }}'
+    skip_push: auto
+    image_templates:
+      - 'koddr/{{ .ProjectName }}:{{ .Tag }}-amd64'
       - 'koddr/{{ .ProjectName }}:{{ .Tag }}-arm64'
 
 nfpms:
