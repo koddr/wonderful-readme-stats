@@ -68,7 +68,7 @@ release:
 
 dockers:
   -
-    id: '{{ .ProjectName }}'
+    id: '{{ .ProjectName }}_amd64'
     ids: [ default ]
     use: buildx
     image_templates:
@@ -87,7 +87,7 @@ dockers:
     push_flags:
       - '--tls-verify=false'
   -
-    id: '{{ .ProjectName }}'
+    id: '{{ .ProjectName }}_arm64'
     ids: [ default ]
     use: buildx
     image_templates:
