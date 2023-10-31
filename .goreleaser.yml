@@ -71,11 +71,10 @@ dockers:
     id: '{{ .ProjectName }}_amd64'
     ids: [ default ]
     use: buildx
+    skip_push: auto
     image_templates:
       - 'koddr/{{ .ProjectName }}:latest-amd64'
       - 'koddr/{{ .ProjectName }}:{{ .Tag }}-amd64'
-      - 'koddr/{{ .ProjectName }}:v{{ .Major }}-amd64'
-      - 'koddr/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}-amd64'
     build_flag_templates:
       - '--pull'
       - '--label=org.opencontainers.image.created={{ .Date }}'
@@ -83,18 +82,16 @@ dockers:
       - '--label=org.opencontainers.image.revision={{ .FullCommit }}'
       - '--label=org.opencontainers.image.version={{ .Version }}'
       - '--platform=linux/amd64'
-    skip_push: false
     push_flags:
       - '--tls-verify=false'
   -
     id: '{{ .ProjectName }}_arm64'
     ids: [ default ]
     use: buildx
+    skip_push: auto
     image_templates:
       - 'koddr/{{ .ProjectName }}:latest-arm64'
       - 'koddr/{{ .ProjectName }}:{{ .Tag }}-arm64'
-      - 'koddr/{{ .ProjectName }}:v{{ .Major }}-arm64'
-      - 'koddr/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}-arm64'
     build_flag_templates:
       - '--pull'
       - '--label=org.opencontainers.image.created={{ .Date }}'
@@ -102,17 +99,37 @@ dockers:
       - '--label=org.opencontainers.image.revision={{ .FullCommit }}'
       - '--label=org.opencontainers.image.version={{ .Version }}'
       - '--platform=linux/arm64'
-    skip_push: false
+    push_flags:
+      - '--tls-verify=false'
+  -
+    id: '{{ .ProjectName }}_darwin_arm64'
+    ids: [ default ]
+    use: buildx
+    skip_push: auto
+    image_templates:
+      - 'koddr/{{ .ProjectName }}:latest-darwin-arm64'
+      - 'koddr/{{ .ProjectName }}:{{ .Tag }}-darwin-arm64'
+    build_flag_templates:
+      - '--pull'
+      - '--label=org.opencontainers.image.created={{ .Date }}'
+      - '--label=org.opencontainers.image.title={{ .ProjectName }}'
+      - '--label=org.opencontainers.image.revision={{ .FullCommit }}'
+      - '--label=org.opencontainers.image.version={{ .Version }}'
+      - '--platform=darwin/arm64'
     push_flags:
       - '--tls-verify=false'
 
 docker_manifests:
   -
     name_template: 'koddr/{{ .ProjectName }}:{{ .Tag }}'
+    skip_push: auto
     image_templates:
+      - 'koddr/{{ .ProjectName }}:latest-amd64'
       - 'koddr/{{ .ProjectName }}:{{ .Tag }}-amd64'
+      - 'koddr/{{ .ProjectName }}:latest-arm64'
       - 'koddr/{{ .ProjectName }}:{{ .Tag }}-arm64'
-      - '--tls-verify=false'
+      - 'koddr/{{ .ProjectName }}:latest-darwin-arm64'
+      - 'koddr/{{ .ProjectName }}:{{ .Tag }}-darwin-arm64'
 
 nfpms:
   -
