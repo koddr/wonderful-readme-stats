@@ -24,7 +24,7 @@ Feel free to using the latest version of the `wonderful-readme-stats` from our [
 > [!NOTE]
 > See the [Complete user guide][repo_cug_url] to understand the basic principles of the project.
 
-Run the `wonderful-readme-stats` container on the local GNU/Linux (amd64 or arm64) machine with your environment variables:
+Run the container on the local GNU/Linux (`amd64` or `arm64`) machine with your environment variables:
 
 ```console
 docker run -d \
