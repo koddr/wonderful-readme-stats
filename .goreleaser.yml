@@ -23,7 +23,7 @@ upx:
     compress: best
     lzma: true
     brute: true
-    goos: [ linux, windows ] # skip darwin (latest macOS is not supported now)
+    goos: [ linux ] # skip windows and darwin (latest macOS is not supported now)
     goarch: [ amd64, arm64 ]
 
 release:
@@ -101,23 +101,6 @@ dockers:
       - '--platform=linux/arm64'
     push_flags:
       - '--tls-verify=false'
-  -
-    id: '{{ .ProjectName }}_darwin_arm64'
-    ids: [ default ]
-    use: buildx
-    skip_push: auto
-    image_templates:
-      - 'koddr/{{ .ProjectName }}:latest-darwin-arm64'
-      - 'koddr/{{ .ProjectName }}:{{ .Tag }}-darwin-arm64'
-    build_flag_templates:
-      - '--pull'
-      - '--label=org.opencontainers.image.created={{ .Date }}'
-      - '--label=org.opencontainers.image.title={{ .ProjectName }}'
-      - '--label=org.opencontainers.image.revision={{ .FullCommit }}'
-      - '--label=org.opencontainers.image.version={{ .Version }}'
-      - '--platform=darwin/arm64'
-    push_flags:
-      - '--tls-verify=false'
 
 docker_manifests:
   -
@@ -128,8 +111,6 @@ docker_manifests:
       - 'koddr/{{ .ProjectName }}:{{ .Tag }}-amd64'
       - 'koddr/{{ .ProjectName }}:latest-arm64'
       - 'koddr/{{ .ProjectName }}:{{ .Tag }}-arm64'
-      - 'koddr/{{ .ProjectName }}:latest-darwin-arm64'
-      - 'koddr/{{ .ProjectName }}:{{ .Tag }}-darwin-arm64'
 
 nfpms:
   -
