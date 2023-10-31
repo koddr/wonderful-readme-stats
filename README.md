@@ -11,7 +11,7 @@ Features:
 
 - 100% **free** and **Open Source** under the [Apache 2.0][repo_license_url] license;
 - For **any** level of developer's knowledge and technical expertise;
-- Write on the pure **Go** language, without any overheads;
+- Write on the pure **Go** programming language, without any overheads;
 - Used minimum dependencies, **well-tested** and **well-optimized** for the production;
 - Delivered as a **self-hosted** solution in the Docker image, independent of anyone else;
 - Has the **Complete user guide** to understand the basic principles and deployment processes;

@@ -70,11 +70,12 @@ dockers:
   -
     id: '{{ .ProjectName }}'
     ids: [ default ]
+    use: buildx
     image_templates:
-      - 'koddr/{{ .ProjectName }}:latest'
-      - 'koddr/{{ .ProjectName }}:{{ .Tag }}'
-      - 'koddr/{{ .ProjectName }}:v{{ .Major }}'
-      - 'koddr/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}'
+      - 'koddr/{{ .ProjectName }}:latest-amd64'
+      - 'koddr/{{ .ProjectName }}:{{ .Tag }}-amd64'
+      - 'koddr/{{ .ProjectName }}:v{{ .Major }}-amd64'
+      - 'koddr/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}-amd64'
     build_flag_templates:
       - '--pull'
       - '--label=org.opencontainers.image.created={{ .Date }}'
@@ -84,6 +85,33 @@ dockers:
       - '--platform=linux/amd64'
     skip_push: false
     push_flags:
+      - '--tls-verify=false'
+  -
+    id: '{{ .ProjectName }}'
+    ids: [ default ]
+    use: buildx
+    image_templates:
+      - 'koddr/{{ .ProjectName }}:latest-arm64'
+      - 'koddr/{{ .ProjectName }}:{{ .Tag }}-arm64'
+      - 'koddr/{{ .ProjectName }}:v{{ .Major }}-arm64'
+      - 'koddr/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}-arm64'
+    build_flag_templates:
+      - '--pull'
+      - '--label=org.opencontainers.image.created={{ .Date }}'
+      - '--label=org.opencontainers.image.title={{ .ProjectName }}'
+      - '--label=org.opencontainers.image.revision={{ .FullCommit }}'
+      - '--label=org.opencontainers.image.version={{ .Version }}'
+      - '--platform=linux/arm64'
+    skip_push: false
+    push_flags:
+      - '--tls-verify=false'
+
+docker_manifests:
+  -
+    name_template: 'koddr/{{ .ProjectName }}:{{ .Tag }}'
+    image_templates:
+      - 'koddr/{{ .ProjectName }}:{{ .Tag }}-amd64'
+      - 'koddr/{{ .ProjectName }}:{{ .Tag }}-arm64'
       - '--tls-verify=false'
 
 nfpms:
